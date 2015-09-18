@@ -1,6 +1,6 @@
-# On Mac OSX using Homebrew
+# No Mac OSX Usando Homebrew
 
-To easily install Crystall on Mac you can use our [Homebrew](http://brew.sh/) [tap](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/brew-tap.md)
+Para instalar facilmente o Crystall no seu Mac, você pode usar o nosso [tap](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/brew-tap.md) do [Homebrew](http://brew.sh/).
 
 ```
 brew tap manastech/crystal
@@ -8,7 +8,7 @@ brew update
 brew install crystal-lang
 ```
 
-If you're planning to contribute to the project you might find useful to install LLVM as well. So replace the last line with:
+Se você planeja contribuir com o projeto, você pode achar útil também instalar o LLVM, então substitua a última linha por:
 
 ```
 brew install crystal-lang --with-llvm
