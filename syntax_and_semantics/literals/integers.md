@@ -1,6 +1,6 @@
 # Integers
 
-Existem quatro tipos de inteiros com sinal: [Int8](http://crystal-lang.org/api/Int8.html), [Int16](http://crystal-lang.org/api/Int16.html), [Int32](http://crystal-lang.org/api/Int32.html) e [Int64](http://crystal-lang.org/api/Int64.html), que permitem representar números 8, 16, 32 e 64 bits, respectivamente.
+Existem quatro tipos de inteiros com sinal: [Int8](http://crystal-lang.org/api/Int8.html), [Int16](http://crystal-lang.org/api/Int16.html), [Int32](http://crystal-lang.org/api/Int32.html) e [Int64](http://crystal-lang.org/api/Int64.html), que permitem representar números de 8, 16, 32 e 64 bits, respectivamente.
 
 Existem quatro tipos de inteiros sem sinal: [UInt8](http://crystal-lang.org/api/UInt8.html), [UInt16](http://crystal-lang.org/api/UInt16.html), [UInt32](http://crystal-lang.org/api/UInt32.html) e [UInt64](http://crystal-lang.org/api/UInt64.html).
 
