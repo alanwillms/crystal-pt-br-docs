@@ -13,7 +13,7 @@
    * [Servidor HTTP](overview/http_server.md)
 * [Sintaxe e Semântica](syntax_and_semantics/README.md)
    * [Comentários](syntax_and_semantics/comments.md)
-   * [Literals](syntax_and_semantics/literals.md)
+   * [Literais](syntax_and_semantics/literals.md)
        * [Nil](syntax_and_semantics/literals/nil.md)
        * [Bool](syntax_and_semantics/literals/bool.md)
        * [Integers](syntax_and_semantics/literals/integers.md)

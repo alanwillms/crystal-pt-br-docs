@@ -1,6 +1,6 @@
 # Tuple
 
-A [Tuple](http://crystal-lang.org/api/Tuple.html) is typically created with a tuple literal:
+Um [Tuple](http://crystal-lang.org/api/Tuple.html) geralmente é criado com um literal de tuplas:
 
 ```crystal
 tuple = {1, "hello", 'x'} # Tuple(Int32, String, Char)
@@ -9,4 +9,4 @@ tuple[1]                  #=> "hello" (String)
 tuple[2]                  #=> 'x'     (Char)
 ```
 
-To create an empty tuple use [Tuple.new](http://crystal-lang.org/api/Tuple.html#new%28%2Aargs%29-class-method).
+Para criar uma tupla vazia, use [Tuple.new](http://crystal-lang.org/api/Tuple.html#new%28%2Aargs%29-class-method).

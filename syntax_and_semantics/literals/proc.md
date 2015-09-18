@@ -1,42 +1,42 @@
 # Proc
 
-A [Proc](http://crystal-lang.org/api/Proc.html) represents a function pointer with an optional context (the closure data). It is typically created with a proc literal:
+Uma [Proc](http://crystal-lang.org/api/Proc.html) representa o ponteiro de uma função com um contexto opcional (os dados do ambiente). Geralmente é criado com um literal de proc:
 
 ```crystal
-# A proc without arguments
+# Uma proc sem argumentos:
 ->{ 1 } # Proc(Int32)
 
-# A proc with one argument
+# Uma proc com um argumento:
 ->(x : Int32) { x.to_s } # Proc(Int32, String)
 
-# A proc with two arguments:
+# Uma proc com dois argumentos:
 ->(x : Int32, y : Int32) { x + y } # Proc(Int32, Int32, Int32)
 ```
 
-The types of the arguments are mandatory, except when directly sending a proc literal to a lib `fun` in C bindings.
+Os tipos dos argumentos são obrigatórios, exceto ao enviar diretamente um literal de proc a uma `fun` de uma lib em bindings para C.
 
-The return type is inferred from the proc's body.
+O tipo do retorno é inferido do corpo da proc.
 
-A special `new` method is provided too:
+Também é disponibilizado um método `new` especial:
 
 ```crystal
 Proc(Int32, String).new { |x| x.to_s } # Proc(Int32, String)
 ```
 
-This form allows you to specify the return type and to check it against the proc's body.
+Esta forma permite que você especifique o tipo de retorno e verifique-o em relação ao corpo da proc.
 
-## Invoking
+## Invocando
 
-To invoke a Proc, you invoke the `call` method on it. The number of arguments must match the proc's type:
+Para invocar uma Proc, você chama o método `call` dela. O número de argumentos deve coincidir com o tipo da proc:
 
 ```crystal
 proc = ->(x : Int32, y : Int32) { x + y }
 proc.call(1, 2) #=> 3
 ```
 
-## From methods
+## A Partir de Métodos
 
-A Proc can be created from an existing method:
+Uma Proc pode ser criada a partir de um método existente:
 
 ```crystal
 def one
@@ -47,7 +47,7 @@ proc = ->one
 proc.call #=> 1
 ```
 
-If the method has arguments, you must specify their types:
+Se o método tiver argumentos, você precisa especificar seus tipos:
 
 ```crystal
 def plus_one(x)
@@ -58,7 +58,7 @@ proc = ->plus_one(Int32)
 proc.call(41) #=> 42
 ```
 
-A proc can optionally specify a receiver:
+Uma proc pode opcionalmente especificar um receptáculo:
 
 ```crystal
 str = "hello"
