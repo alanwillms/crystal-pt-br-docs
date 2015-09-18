@@ -1,9 +1,9 @@
-# Global variables
+# Variáveis Globais
 
-Global variables start with a dollar sign (`$`). They are declared when you first assign them a value.
+Variáveis globais começam com um sinal de dólar (`$`). Elas são declaradas na primeira vez em que você atribui um valor a elas.
 
 ```crystal
 $year = 2014
 ```
 
-Their type is the combined type of all expressions that were assigned to them. Additionally, if your program reads a global variable before it was ever assigned a value it will also have the `Nil` type.
+Seu tipo é o tipo combinado de todas as expressões que foram atribuídas a elas. Além disso, se o seu programa lê uma variável global antes que ela receba qualquer valor, ela também terá o tipo `Nil`.
