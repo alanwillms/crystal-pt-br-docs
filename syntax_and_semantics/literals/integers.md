@@ -43,10 +43,10 @@ Números binários começam com `0b`:
 0b1101 # == 13
 ```
 
-Números octais começam com um zero:
+Números octais começam com um `0o`:
 
 ```crystal
-0123 # == 83
+0o123 # == 83
 ```
 
 Números hexadecimais começam com `0x`:
