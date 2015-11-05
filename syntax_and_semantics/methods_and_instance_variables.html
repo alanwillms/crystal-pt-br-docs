@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Methods and instance variables | Linguagem de Programação Crystal</title>
+        <title>Métodos e variáveis de instância | Linguagem de Programação Crystal</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.3">
@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="4.7.3.2" data-basepath=".." data-revision="Tue Oct 13 2015 14:41:53 GMT-0300 (BRT)">
+    <div class="book" data-level="4.7.3.2" data-basepath=".." data-revision="Thu Nov 05 2015 00:53:30 GMT-0200 (BRST)">
     
 
 <div class="book-summary">
@@ -843,7 +843,7 @@
                         
                             <b>4.7.</b>
                         
-                        Types and methods
+                        Tipos e métodos
                     </a>
             
             
@@ -859,7 +859,7 @@
                         
                             <b>4.7.1.</b>
                         
-                        Everything is an object
+                        Tudo é um objeto
                     </a>
             
             
@@ -874,7 +874,7 @@
                         
                             <b>4.7.2.</b>
                         
-                        The Program
+                        O programa
                     </a>
             
             
@@ -889,7 +889,7 @@
                         
                             <b>4.7.3.</b>
                         
-                        Classes and methods
+                        Classes e métodos
                     </a>
             
             
@@ -905,7 +905,7 @@
                         
                             <b>4.7.3.1.</b>
                         
-                        new, initialize and allocate
+                        new, initialize e allocate
                     </a>
             
             
@@ -920,7 +920,7 @@
                         
                             <b>4.7.3.2.</b>
                         
-                        Methods and instance variables
+                        Métodos e variáveis de instância
                     </a>
             
             
@@ -935,7 +935,7 @@
                         
                             <b>4.7.3.3.</b>
                         
-                        Instance variables type inference
+                        Variáveis de instância e inferência de tipo
                     </a>
             
             
@@ -950,7 +950,7 @@
                         
                             <b>4.7.3.4.</b>
                         
-                        Overloading
+                        Sobrecarga
                     </a>
             
             
@@ -965,7 +965,7 @@
                         
                             <b>4.7.3.5.</b>
                         
-                        Default and named arguments
+                        Valores padrão e argumentos nomeados
                     </a>
             
             
@@ -980,7 +980,7 @@
                         
                             <b>4.7.3.6.</b>
                         
-                        Splats and tuples
+                        Splats e tuplas
                     </a>
             
             
@@ -995,7 +995,7 @@
                         
                             <b>4.7.3.7.</b>
                         
-                        Type restrictions
+                        Restrições de tipos
                     </a>
             
             
@@ -1010,7 +1010,7 @@
                         
                             <b>4.7.3.8.</b>
                         
-                        Return types
+                        Tipos de retorno
                     </a>
             
             
@@ -1025,7 +1025,7 @@
                         
                             <b>4.7.3.9.</b>
                         
-                        Operators
+                        Operadores
                     </a>
             
             
@@ -1040,7 +1040,7 @@
                         
                             <b>4.7.3.10.</b>
                         
-                        Visibility
+                        Visibilidade
                     </a>
             
             
@@ -1950,82 +1950,82 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="methods-and-instance-variables">Methods and instance variables</h1>
-<p>We can simplify our constructor by using a shorter syntax for assigning a method argument to an instance variable:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(<span class="hljs-variable">@name</span>)
-    <span class="hljs-variable">@age</span> = <span class="hljs-number">0</span>
+                        <h1 id="m%C3%A9todos-e-vari%C3%A1veis-de-inst%C3%A2ncia">M&#xE9;todos e vari&#xE1;veis de inst&#xE2;ncia</h1>
+<p>Podemos simplificar nosso construtor usando uma sintaxe mais curta para atribuir o argumento de um m&#xE9;todo a uma vari&#xE1;vel de inst&#xE2;ncia:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(<span class="hljs-variable">@nome</span>)
+    <span class="hljs-variable">@idade</span> = <span class="hljs-number">0</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<p>Right now, we can&apos;t do much with a person: create it with a name, ask for its name and for its age, which will always be zero. So lets add a method that makes a person become older:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>
-    <span class="hljs-variable">@age</span> += <span class="hljs-number">1</span>
+<p>No momento n&#xE3;o podemos fazer muita coisa com uma pessoa: podemos cri&#xE1;-la com um nome, e pedir por seu nome e sua idade (que sempre ser&#xE1; zero). Ent&#xE3;o vamos adicionar um m&#xE9;todo que envelhece uma pessoa:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>
+    <span class="hljs-variable">@idade</span> += <span class="hljs-number">1</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-john = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
-peter = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;Peter&quot;</span>
+joao = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
+pedro = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Pedro&quot;</span>
 
-john.age <span class="hljs-comment">#=&gt; 0</span>
+joao.idade <span class="hljs-comment">#=&gt; 0</span>
 
-john.become_older
-john.age <span class="hljs-comment">#=&gt; 1</span>
+joao.envelhecer
+joao.idade <span class="hljs-comment">#=&gt; 1</span>
 
-peter.age <span class="hljs-comment">#=&gt; 0</span>
+pedro.idade <span class="hljs-comment">#=&gt; 0</span>
 </code></pre>
-<p>Method names begin with a lowercase letter and, as a convention, only use lowercase letters, underscores and numbers.</p>
-<p>As a side note, we can define <code>become_older</code> inside the original <code>Person</code> definition, or in a separate definition: Crystal combines all definitions into a single class. The following works just fine:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(<span class="hljs-variable">@name</span>)
-    <span class="hljs-variable">@age</span> = <span class="hljs-number">0</span>
+<p>Os nomes de m&#xE9;todos come&#xE7;am com uma letra min&#xFA;scula e, como conven&#xE7;&#xE3;o, s&#xF3; usam letras min&#xFA;sculas, <em>underscores</em> e n&#xFA;meros.</p>
+<p>Al&#xE9;m disso, podemos declarar <code>envelhecer</code> dentro da defini&#xE7;&#xE3;o original da <code>Pessoa</code>, ou em uma defini&#xE7;&#xE3;o separada: Crystal combina todas as defini&#xE7;&#xF5;es em uma &#xFA;nica classe. O c&#xF3;digo abaixo funciona normalmente:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(<span class="hljs-variable">@nome</span>)
+    <span class="hljs-variable">@idade</span> = <span class="hljs-number">0</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>
-    <span class="hljs-variable">@age</span> += <span class="hljs-number">1</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>
+    <span class="hljs-variable">@idade</span> += <span class="hljs-number">1</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<h2 id="redefining-methods-and-previous-def">Redefining methods, and previous_def</h2>
-<p>If you redefine a method, the last definition will take precedence.</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>
-    <span class="hljs-variable">@age</span> += <span class="hljs-number">1</span>
+<h2 id="sobrescrevendo-m%C3%A9todos-e-previous-def">Sobrescrevendo m&#xE9;todos e <code>previous_def</code></h2>
+<p>Se voc&#xEA; sobrescreve um m&#xE9;todo, a &#xFA;ltima defini&#xE7;&#xE3;o toma preced&#xEA;ncia.</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>
+    <span class="hljs-variable">@idade</span> += <span class="hljs-number">1</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>
-    <span class="hljs-variable">@age</span> += <span class="hljs-number">2</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>
+    <span class="hljs-variable">@idade</span> += <span class="hljs-number">2</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-person = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
-person.become_older
-person.age <span class="hljs-comment">#=&gt; 2</span>
+person = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
+person.envelhecer
+person.idade <span class="hljs-comment">#=&gt; 2</span>
 </code></pre>
-<p>You can invoke the previously redefined method with <code>previous_def</code>:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>
-    <span class="hljs-variable">@age</span> += <span class="hljs-number">1</span>
+<p>Voc&#xEA; pode invocar o m&#xE9;todo sobrescrito com <code>previous_def</code>:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>
+    <span class="hljs-variable">@idade</span> += <span class="hljs-number">1</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>
     previous_def
-    <span class="hljs-variable">@age</span> += <span class="hljs-number">2</span>
+    <span class="hljs-variable">@idade</span> += <span class="hljs-number">2</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-person = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
-person.become_older
-person.age <span class="hljs-comment">#=&gt; 3</span>
+person = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
+person.envelhecer
+person.idade <span class="hljs-comment">#=&gt; 3</span>
 </code></pre>
-<p>Without arguments nor parenthesis, <code>previous_def</code> receives the same arguments as the method&apos;s arguments. Otherwise, it receives the arguments you pass to it.</p>
+<p>Sem argumentos ou par&#xEA;nteses, <code>previous_def</code> recebe os mesmos argumentos que o m&#xE9;todo onde &#xE9; invocado. Caso contr&#xE1;rio, ele recebe os argumentos que voc&#xEA; passa para ele.</p>
 
                     
                     </section>
@@ -2036,10 +2036,10 @@ person.age <span class="hljs-comment">#=&gt; 3</span>
         </div>
 
         
-        <a href="../syntax_and_semantics/new,_initialize_and_allocate.html" class="navigation navigation-prev " aria-label="Previous page: new, initialize and allocate"><i class="fa fa-angle-left"></i></a>
+        <a href="../syntax_and_semantics/new,_initialize_and_allocate.html" class="navigation navigation-prev " aria-label="Previous page: new, initialize e allocate"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../syntax_and_semantics/instance_variables_type_inference.html" class="navigation navigation-next " aria-label="Next page: Instance variables type inference"><i class="fa fa-angle-right"></i></a>
+        <a href="../syntax_and_semantics/instance_variables_type_inference.html" class="navigation navigation-next " aria-label="Next page: Variáveis de instância e inferência de tipo"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

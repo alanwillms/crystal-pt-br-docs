@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Instance variables type inference | Linguagem de Programação Crystal</title>
+        <title>Variáveis de instância e inferência de tipo | Linguagem de Programação Crystal</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.3">
@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="4.7.3.3" data-basepath=".." data-revision="Tue Oct 13 2015 14:41:53 GMT-0300 (BRT)">
+    <div class="book" data-level="4.7.3.3" data-basepath=".." data-revision="Thu Nov 05 2015 00:53:30 GMT-0200 (BRST)">
     
 
 <div class="book-summary">
@@ -843,7 +843,7 @@
                         
                             <b>4.7.</b>
                         
-                        Types and methods
+                        Tipos e métodos
                     </a>
             
             
@@ -859,7 +859,7 @@
                         
                             <b>4.7.1.</b>
                         
-                        Everything is an object
+                        Tudo é um objeto
                     </a>
             
             
@@ -874,7 +874,7 @@
                         
                             <b>4.7.2.</b>
                         
-                        The Program
+                        O programa
                     </a>
             
             
@@ -889,7 +889,7 @@
                         
                             <b>4.7.3.</b>
                         
-                        Classes and methods
+                        Classes e métodos
                     </a>
             
             
@@ -905,7 +905,7 @@
                         
                             <b>4.7.3.1.</b>
                         
-                        new, initialize and allocate
+                        new, initialize e allocate
                     </a>
             
             
@@ -920,7 +920,7 @@
                         
                             <b>4.7.3.2.</b>
                         
-                        Methods and instance variables
+                        Métodos e variáveis de instância
                     </a>
             
             
@@ -935,7 +935,7 @@
                         
                             <b>4.7.3.3.</b>
                         
-                        Instance variables type inference
+                        Variáveis de instância e inferência de tipo
                     </a>
             
             
@@ -950,7 +950,7 @@
                         
                             <b>4.7.3.4.</b>
                         
-                        Overloading
+                        Sobrecarga
                     </a>
             
             
@@ -965,7 +965,7 @@
                         
                             <b>4.7.3.5.</b>
                         
-                        Default and named arguments
+                        Valores padrão e argumentos nomeados
                     </a>
             
             
@@ -980,7 +980,7 @@
                         
                             <b>4.7.3.6.</b>
                         
-                        Splats and tuples
+                        Splats e tuplas
                     </a>
             
             
@@ -995,7 +995,7 @@
                         
                             <b>4.7.3.7.</b>
                         
-                        Type restrictions
+                        Restrições de tipos
                     </a>
             
             
@@ -1010,7 +1010,7 @@
                         
                             <b>4.7.3.8.</b>
                         
-                        Return types
+                        Tipos de retorno
                     </a>
             
             
@@ -1025,7 +1025,7 @@
                         
                             <b>4.7.3.9.</b>
                         
-                        Operators
+                        Operadores
                     </a>
             
             
@@ -1040,7 +1040,7 @@
                         
                             <b>4.7.3.10.</b>
                         
-                        Visibility
+                        Visibilidade
                     </a>
             
             
@@ -1950,141 +1950,141 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="instance-variables-type-inference">Instance variables type inference</h1>
-<p>Did you notice that in all of the previous examples we never said the types of a <code>Person</code>&apos;s <code>@name</code> and <code>@age</code>? This is because the compiler inferred them for us.</p>
-<p>When we wrote:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  getter name
+                        <h1 id="vari%C3%A1veis-de-inst%C3%A2ncia-e-infer%C3%AAncia-de-tipo">Vari&#xE1;veis de inst&#xE2;ncia e infer&#xEA;ncia de tipo</h1>
+<p>Voc&#xEA; percebeu que em todos os exemplos anteriores n&#xF3;s nunca dissemos os tipos do <code>@nome</code> e da <code>@idade</code> da <code>Pessoa</code>? Isso porque o compilador deduziu os tipos para n&#xF3;s.</p>
+<p>Quando escrevemos:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  getter nome
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(<span class="hljs-variable">@name</span>)
-    <span class="hljs-variable">@age</span> = <span class="hljs-number">0</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(<span class="hljs-variable">@nome</span>)
+    <span class="hljs-variable">@idade</span> = <span class="hljs-number">0</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-john = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
-john.name <span class="hljs-comment">#=&gt; &quot;John&quot;</span>
-john.name.size <span class="hljs-comment">#=&gt; 4</span>
+joao = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
+joao.nome <span class="hljs-comment">#=&gt; &quot;Jo&#xE3;o&quot;</span>
+joao.nome.size <span class="hljs-comment">#=&gt; 4</span>
 </code></pre>
-<p>Since we invoked <code>Person.new</code> with a <code>String</code> argument, the compiler makes <code>@name</code> be a <code>String</code> too.</p>
-<p>If we had invoked <code>Person.new</code> with another type, <code>@name</code> would have taken a different type:</p>
-<pre><code class="lang-crystal">one = <span class="hljs-constant">Person</span>.new <span class="hljs-number">1</span>
-one.name <span class="hljs-comment">#=&gt; 1</span>
-one.name + <span class="hljs-number">2</span> <span class="hljs-comment">#=&gt; 3</span>
+<p>J&#xE1; que invocamos <code>Pessoa.new</code> com um argumento do tipo <code>String</code>, o compilador tamb&#xE9;m torna <code>@nome</code> em uma <code>String</code>.</p>
+<p>Se tiv&#xE9;ssemos invocado <code>Pessoa.new</code> com outro tipo, <code>@nome</code> teria recebido esse tipo diferente:</p>
+<pre><code class="lang-crystal">um = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-number">1</span>
+um.nome <span class="hljs-comment">#=&gt; 1</span>
+um.nome + <span class="hljs-number">2</span> <span class="hljs-comment">#=&gt; 3</span>
 </code></pre>
-<p>If you compile the previous programs with the <code>tool hierarchy</code> command, the compiler will show you a hierarchy graph with the types it inferred. In the first case:</p>
+<p>Se voc&#xEA; compilar os programas acima com o comando <code>tool hierarchy</code>, o compilador mostraria um grafo da hierarquia com os tipos que ele deduziu. No primeiro caso:</p>
 <pre><code>- class Object
   |
   +- class Reference
      |
-     +- class Person
-            @name : String
-            @age  : Int32
-</code></pre><p>In the second case:</p>
+     +- class Pessoa
+            @nome : String
+            @idade  : Int32
+</code></pre><p>No segundo caso:</p>
 <pre><code>- class Object
   |
   +- class Reference
      |
-     +- class Person
-            @name : Int32
-            @age  : Int32
-</code></pre><p>What happens if we create two different people, one with a <code>String</code> and one with an <code>Int32</code>? Let&apos;s try it:</p>
-<pre><code class="lang-crystal">john = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
-one = <span class="hljs-constant">Person</span>.new <span class="hljs-number">1</span>
+     +- class Pessoa
+            @nome : Int32
+            @idade  : Int32
+</code></pre><p>O que acontece se criarmos duas pessoas diferentes, uma com uma <code>String</code> e outra com um <code>Int32</code>? Vamos tentar fazer isso:</p>
+<pre><code class="lang-crystal">joao = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
+um = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-number">1</span>
 </code></pre>
-<p>Invoking the compiler with the <code>tool hierarchy</code> command we get:</p>
+<p>Ao invocar o compilador com o comando <code>tool hierarchy</code>, n&#xF3;s obtemos:</p>
 <pre><code>- class Object
   |
   +- class Reference
      |
-     +- class Person
-            @name : (String | Int32)
-            @age  : Int32
-</code></pre><p>We can see that now <code>@name</code> has a type <code>(String | Int32)</code>, which is read as a <em>union</em> of <code>String</code> and <code>Int32</code>. The compiler made <code>@name</code> have all types assigned to it.</p>
-<p>In this case, the compiler will consider any usage of <code>@name</code> as always being either a <code>String</code> or an <code>Int32</code> and will give a compile time error if a method is not found for <em>both</em> types:</p>
-<pre><code class="lang-crystal">john = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
-one = <span class="hljs-constant">Person</span>.new <span class="hljs-number">1</span>
+     +- class Pessoa
+            @nome : (String | Int32)
+            @idade  : Int32
+</code></pre><p>Podemos ver que agora <code>@nome</code> tem um tipo <code>(String | Int32)</code>, que &#xE9; lido como uma <strong>uni&#xE3;o</strong> de <code>String</code> e <code>Int32</code>. O compilador fez com que <code>@nome</code> tivesse todos os tipos atribu&#xED;dos a ele.</p>
+<p>Neste caso, o compilador considerar&#xE1; qualquer uso de <code>@nome</code> como sempre sendo ou uma <code>String</code> ou um <code>Int32</code>, e retornar&#xE1; um erro em tempo de compila&#xE7;&#xE3;o se um m&#xE9;todo n&#xE3;o for encontrado em <em>ambos</em> os tipos:</p>
+<pre><code class="lang-crystal">joao = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
+um = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-number">1</span>
 
 <span class="hljs-comment"># Error: undefined method &apos;size&apos; for Int32</span>
-john.name.size
+joao.nome.size
 
 <span class="hljs-comment"># Error: no overload matches &apos;String#+&apos; with types Int32</span>
-john.name + <span class="hljs-number">3</span>
+joao.nome + <span class="hljs-number">3</span>
 </code></pre>
-<p>The compiler will even give an error if you first use a variable assuming it has a type and later you change that type:</p>
-<pre><code class="lang-crystal">john = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
-john.name.size
-one = <span class="hljs-constant">Person</span>.new <span class="hljs-number">1</span>
+<p>O compilador tamb&#xE9;m exibir&#xE1; um erro se voc&#xEA; usar uma vari&#xE1;vel primeiro assumindo um tipo e depois mudando esse tipo:</p>
+<pre><code class="lang-crystal">joao = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
+joao.nome.size
+um = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-number">1</span>
 </code></pre>
-<p>Gives this compile-time error:</p>
-<pre><code>Error in foo.cr:14: instantiating &apos;Person:Class#new(Int32)&apos;
+<p>D&#xE1; o erro em tempo de compila&#xE7;&#xE3;o:</p>
+<pre><code>Error in foo.cr:14: instantiating &apos;Pessoa:Class#new(Int32)&apos;
 
-one = Person.new 1
+um = Pessoa.new 1
              ^~~
 
-instantiating &apos;Person#initialize(Int32)&apos;
+instantiating &apos;Pessoa#initialize(Int32)&apos;
 
 in foo.cr:12: undefined method &apos;size&apos; for Int32
 
-john.name.size
+joao.nome.size
           ^~~~~~
-</code></pre><p>That is, the compiler does global type inference and tells you whenever you make a mistake in the usage of a class or method. You can go ahead and put a type restriction like <code>def initialize(@name : String)</code>, but that makes the code a bit more verbose and also less generic: everything will work just fine if you create <code>Person</code> instance with types that have the same <em>interface</em> as a <code>String</code>, as long as you use a <code>Person</code>&apos;s name like if it were a <code>String</code>.</p>
-<p>If you do want to have different <code>Person</code> types, one with <code>@name</code> being an <code>Int32</code> and one with <code>@name</code> being a <code>String</code>, you must use <a href="generics.html">generics</a>.</p>
-<h2 id="nilable-instance-variables">Nilable instance variables</h2>
-<p>If an instance variable is not assigned in all of the <code>initialize</code> defined in a class, it will be considered as also having the type <code>Nil</code>:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  getter name
+</code></pre><p>Ou seja, o compilador faz uma infer&#xEA;ncia global de tipos e te avisa quando quer que voc&#xEA; cometa o erro no uso de uma classe ou m&#xE9;todo. Voc&#xEA; pode optar por colocar uma restri&#xE7;&#xE3;o de tipo como <code>def initialize(@nome : String)</code>, mas isso torna o c&#xF3;digo um pouquinho mais verboso e tamb&#xE9;m menos gen&#xE9;rico: tudo funcionar&#xE1; normalmente se voc&#xEA; criar uma inst&#xE2;ncia de <code>Pessoa</code> com tipos que t&#xEA;m a mesma <em>interface</em> que uma <code>String</code>, desde que voc&#xEA; use o nome da <code>Pessoa</code> como se fosse uma <code>String</code>.</p>
+<p>Se voc&#xEA; quiser ter tipos diferentes de <code>Pessoa</code>, um onde o <code>@nome</code> &#xE9; um <code>Int32</code> e um onde o <code>@nome</code> &#xE9; uma <code>String</code>, voc&#xEA; precisa utilizar <a href="generics.html">programa&#xE7;&#xE3;o gen&#xE9;rica</a>.</p>
+<h2 id="vari%C3%A1veis-de-inst%C3%A2ncia-que-podem-ser-nil">Vari&#xE1;veis de inst&#xE2;ncia que podem ser Nil</h2>
+<p>Se uma vari&#xE1;vel de inst&#xE2;ncia n&#xE3;o for atribu&#xED;da em todos os <code>initialize</code> definidos em uma classe, considera-se que ela tamb&#xE9;m tem o tipo <code>Nil</code>:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  getter nome
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(<span class="hljs-variable">@name</span>)
-    <span class="hljs-variable">@age</span> = <span class="hljs-number">0</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(<span class="hljs-variable">@nome</span>)
+    <span class="hljs-variable">@idade</span> = <span class="hljs-number">0</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">address</span></span>
-    <span class="hljs-variable">@address</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">endereco</span></span>
+    <span class="hljs-variable">@endereco</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">address=</span></span>(<span class="hljs-variable">@address</span>)
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">endereco=</span></span>(<span class="hljs-variable">@endereco</span>)
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-john = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
-john.address = <span class="hljs-string">&quot;Argentina&quot;</span>
+joao = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
+joao.endereco = <span class="hljs-string">&quot;Argentina&quot;</span>
 </code></pre>
-<p>The hierarchy graph now shows:</p>
+<p>Agora o grafo da hierarquia nos mostra:</p>
 <pre><code>- class Object
   |
   +- class Reference
      |
-     +- class Person
-            @name : String
-            @age : Int32
-            @address : String?
-</code></pre><p>You can see <code>@address</code> is <code>String?</code>, which is a short form notation of <code>String | Nil</code>. This means that the following gives a compile time error:</p>
+     +- class Pessoa
+            @nome : String
+            @idade : Int32
+            @endereco : String?
+</code></pre><p>Voc&#xEA; pode ver que <code>@endereco</code> &#xE9; do tipo <code>String?</code>, que &#xE9; uma nota&#xE7;&#xE3;o curta para <code>String | Nil</code>. Isso significa que o c&#xF3;digo a seguir lan&#xE7;a um erro em tempo de compila&#xE7;&#xE3;o:</p>
 <pre><code class="lang-crystal"><span class="hljs-comment"># Error: undefined method &apos;size&apos; for Nil</span>
-john.address.size
+joao.endereco.size
 </code></pre>
-<p>To deal with <code>Nil</code>, and generally with union types, you have several options: use an <a href="if_var.html">if var</a>, <a href="if_varis_a.html">if var.is_a?</a>, <a href="case.html">case</a> and <a href="is_a.html">is_a?</a>.</p>
-<h2 id="catch-all-initialization">Catch-all initialization</h2>
-<p>Instance variables can also be initialized outside <code>initialize</code> methods:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-variable">@age</span> = <span class="hljs-number">0</span>
+<p>Para lidar <code>Nil</code>, e geralmente com tipos uni&#xE3;o, voc&#xEA;m tem diversas op&#xE7;&#xF5;es: usar <a href="if_var.html">if var</a>, <a href="if_varis_a.html">if var.is_a?</a>, <a href="case.html">case</a> e <a href="is_a.html">is_a?</a>.</p>
+<h2 id="inicializa%C3%A7%C3%A3o-geral">Inicializa&#xE7;&#xE3;o geral</h2>
+<p>Vari&#xE1;veis de inst&#xE2;ncia tamb&#xE9;m podem ser inicializadas fora de m&#xE9;todos <code>initialize</code>:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-variable">@idade</span> = <span class="hljs-number">0</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(<span class="hljs-variable">@name</span>)
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(<span class="hljs-variable">@nome</span>)
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<p>This will initialize <code>@age</code> to zero in every constructor. This is useful to avoid duplication, but also to avoid the <code>Nil</code> type when reopening a class and adding instance variables to it.</p>
-<h2 id="specifying-the-types-of-instance-variables">Specifying the types of instance variables</h2>
-<p>In certain cases you want to tell the compiler to fix the type of an instance variable. You can do this with <code>::</code>:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-variable">@age</span> <span class="hljs-symbol">:</span><span class="hljs-symbol">:</span> <span class="hljs-constant">Int32</span>
+<p>Isso inicializar&#xE1; <code>@idade</code> com zero em todos os construtores. Isso &#xE9; &#xFA;til para evitar duplica&#xE7;&#xE3;o e para evitar o tipo <code>Nil</code> ao reabrir uma classe e adicionar vari&#xE1;veis de inst&#xE2;ncia a ela.</p>
+<h2 id="especificando-os-tipos-de-vari%C3%A1veis-de-inst%C3%A2ncia">Especificando os tipos de vari&#xE1;veis de inst&#xE2;ncia</h2>
+<p>Em determinados casos voc&#xEA; pode querer dizer ao compilador para fixar o tipo de uma vari&#xE1;vel de inst&#xE2;ncia. Voc&#xEA; pode fazer isso com <code>::</code>:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-variable">@idade</span> <span class="hljs-symbol">:</span><span class="hljs-symbol">:</span> <span class="hljs-constant">Int32</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(<span class="hljs-variable">@name</span>)
-    <span class="hljs-variable">@age</span> = <span class="hljs-number">0</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(<span class="hljs-variable">@nome</span>)
+    <span class="hljs-variable">@idade</span> = <span class="hljs-number">0</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<p>In this case, if we assign something that&apos;s not an <code>Int32</code> to <code>@age</code>, a compile-time error will be issued at the assignment location.</p>
-<p>Note that you still have to initialize the instance variables, either with a catch-all initializer or within an <code>initialize</code> method: there are no &quot;default&quot; values for types.</p>
+<p>Neste caso, se atribuirmos alguma coisa que n&#xE3;o &#xE9; um <code>Int32</code> a <code>@idade</code>, um erro de tempo de compila&#xE7;&#xE3;o ser&#xE1; lan&#xE7;ado no ponto da atribui&#xE7;&#xE3;o.</p>
+<p>Perceba que voc&#xEA; ainda precisa inicializar as vari&#xE1;veis de inst&#xE2;ncia, seja com um inicializador geral ou dentro de um m&#xE9;todo <code>initialize</code>: n&#xE3;o existem valores &quot;padr&#xE3;o&quot; para os tipos.</p>
 
                     
                     </section>
@@ -2095,10 +2095,10 @@ john.address.size
         </div>
 
         
-        <a href="../syntax_and_semantics/methods_and_instance_variables.html" class="navigation navigation-prev " aria-label="Previous page: Methods and instance variables"><i class="fa fa-angle-left"></i></a>
+        <a href="../syntax_and_semantics/methods_and_instance_variables.html" class="navigation navigation-prev " aria-label="Previous page: Métodos e variáveis de instância"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../syntax_and_semantics/overloading.html" class="navigation navigation-next " aria-label="Next page: Overloading"><i class="fa fa-angle-right"></i></a>
+        <a href="../syntax_and_semantics/overloading.html" class="navigation navigation-next " aria-label="Next page: Sobrecarga"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

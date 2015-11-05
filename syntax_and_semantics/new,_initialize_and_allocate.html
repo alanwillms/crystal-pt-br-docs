@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>new, initialize and allocate | Linguagem de Programação Crystal</title>
+        <title>new, initialize e allocate | Linguagem de Programação Crystal</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.3">
@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="4.7.3.1" data-basepath=".." data-revision="Tue Oct 13 2015 14:41:53 GMT-0300 (BRT)">
+    <div class="book" data-level="4.7.3.1" data-basepath=".." data-revision="Thu Nov 05 2015 00:53:30 GMT-0200 (BRST)">
     
 
 <div class="book-summary">
@@ -843,7 +843,7 @@
                         
                             <b>4.7.</b>
                         
-                        Types and methods
+                        Tipos e métodos
                     </a>
             
             
@@ -859,7 +859,7 @@
                         
                             <b>4.7.1.</b>
                         
-                        Everything is an object
+                        Tudo é um objeto
                     </a>
             
             
@@ -874,7 +874,7 @@
                         
                             <b>4.7.2.</b>
                         
-                        The Program
+                        O programa
                     </a>
             
             
@@ -889,7 +889,7 @@
                         
                             <b>4.7.3.</b>
                         
-                        Classes and methods
+                        Classes e métodos
                     </a>
             
             
@@ -905,7 +905,7 @@
                         
                             <b>4.7.3.1.</b>
                         
-                        new, initialize and allocate
+                        new, initialize e allocate
                     </a>
             
             
@@ -920,7 +920,7 @@
                         
                             <b>4.7.3.2.</b>
                         
-                        Methods and instance variables
+                        Métodos e variáveis de instância
                     </a>
             
             
@@ -935,7 +935,7 @@
                         
                             <b>4.7.3.3.</b>
                         
-                        Instance variables type inference
+                        Variáveis de instância e inferência de tipo
                     </a>
             
             
@@ -950,7 +950,7 @@
                         
                             <b>4.7.3.4.</b>
                         
-                        Overloading
+                        Sobrecarga
                     </a>
             
             
@@ -965,7 +965,7 @@
                         
                             <b>4.7.3.5.</b>
                         
-                        Default and named arguments
+                        Valores padrão e argumentos nomeados
                     </a>
             
             
@@ -980,7 +980,7 @@
                         
                             <b>4.7.3.6.</b>
                         
-                        Splats and tuples
+                        Splats e tuplas
                     </a>
             
             
@@ -995,7 +995,7 @@
                         
                             <b>4.7.3.7.</b>
                         
-                        Type restrictions
+                        Restrições de tipos
                     </a>
             
             
@@ -1010,7 +1010,7 @@
                         
                             <b>4.7.3.8.</b>
                         
-                        Return types
+                        Tipos de retorno
                     </a>
             
             
@@ -1025,7 +1025,7 @@
                         
                             <b>4.7.3.9.</b>
                         
-                        Operators
+                        Operadores
                     </a>
             
             
@@ -1040,7 +1040,7 @@
                         
                             <b>4.7.3.10.</b>
                         
-                        Visibility
+                        Visibilidade
                     </a>
             
             
@@ -1950,47 +1950,47 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="new-initialize-and-allocate">new, initialize and allocate</h1>
-<p>You create an instance of a class by invoking <code>new</code> on that class:</p>
-<pre><code>person = Person.new
-</code></pre><p>Here, <code>person</code> is an instance of <code>Person</code>.</p>
-<p>We can&apos;t do much with <code>person</code>, so lets add some concepts to it. A <code>Person</code> has a name and an age. In the &quot;Everything is an object&quot; section we said that an object has a type and responds to some methods, which is the only way to interact with objects, so we&apos;ll need a <code>name</code> and <code>age</code> methods. We will store this information in instance variables, which are always prefixed with an <em>at</em> (<code>@</code>) character. We also want a Person to come to existence with a name of our choice and an age of zero. We code the &quot;come to existence&quot; part with a special <code>initialize</code> method, which is normally called a <em>constructor</em>:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(name)
-    <span class="hljs-variable">@name</span> = name
-    <span class="hljs-variable">@age</span> = <span class="hljs-number">0</span>
+                        <h1 id="new-initialize-e-allocate">new, initialize e allocate</h1>
+<p>Voc&#xEA; pode criar uma inst&#xE2;ncia de uma classe invocando <code>new</code> nela:</p>
+<pre><code>pessoa = Pessoa.new
+</code></pre><p>Aqui <code>pessoa</code> &#xE9; uma inst&#xE2;ncia de <code>Pessoa</code>.</p>
+<p>N&#xF3;s n&#xE3;o podemos fazer muita coisa com <code>pessoa</code>, ent&#xE3;o vamos adicionar alguns conceitos a ela. Uma <code>Pessoa</code> tem um nome e uma idade. Na se&#xE7;&#xE3;o &quot;Tudo &#xE9; um objeto&quot;, n&#xF3;s dissemos que um objeto tem um tipo e responde a alguns m&#xE9;todos, que s&#xE3;o a &#xFA;nica maneira de interagir com objetos, ent&#xE3;o vamos precisar dos m&#xE9;todos <code>nome</code> e <code>idade</code>. Vamos armazenar essas informa&#xE7;&#xF5;es em vari&#xE1;veis de inst&#xE2;ncia, que s&#xE3;o prefixadas com um caractere de <em>arroba</em> (<code>@</code>). N&#xF3;s tamb&#xE9;m queremos que uma Pessoa venha a existir com um nome de nossa escolha e uma idade de zero. N&#xF3;s programamos a parte de &quot;vir a existir&quot; com um m&#xE9;todo especial chamado <code>initialize</code>, que normalmente &#xE9; conhecido como <em>construtor</em>:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(nome)
+    <span class="hljs-variable">@nome</span> = nome
+    <span class="hljs-variable">@idade</span> = <span class="hljs-number">0</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">name</span></span>
-    <span class="hljs-variable">@name</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">nome</span></span>
+    <span class="hljs-variable">@nome</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">age</span></span>
-    <span class="hljs-variable">@age</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">idade</span></span>
+    <span class="hljs-variable">@idade</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<p>Now we can create people like this:</p>
-<pre><code class="lang-crystal">john = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
-peter = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;Peter&quot;</span>
+<p>Agora podemos criar pessoas da seguinte forma:</p>
+<pre><code class="lang-crystal">joao = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
+pedro = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Pedro&quot;</span>
 
-john.name <span class="hljs-comment">#=&gt; &quot;John&quot;</span>
-john.age <span class="hljs-comment">#=&gt; 0</span>
+joao.nome <span class="hljs-comment">#=&gt; &quot;Jo&#xE3;o&quot;</span>
+joao.idade <span class="hljs-comment">#=&gt; 0</span>
 
-peter.name <span class="hljs-comment">#=&gt; &quot;Peter&quot;</span>
+pedro.nome <span class="hljs-comment">#=&gt; &quot;Pedro&quot;</span>
 </code></pre>
-<p>Note that we create a <code>Person</code> with <code>new</code> but we defined the initialization in an <code>initialize</code> method, not in a <code>new</code> method. Why is this so?</p>
-<p>The answer is that when we defined an <code>initialize</code> method Crystal defined a <code>new</code> method for us, like this:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">self</span></span>.new(name)
-    instance = <span class="hljs-constant">Person</span>.allocate
-    instance.initialize(name)
-    instance
+<p>Perceba que criamos uma <code>Pessoa</code> com <code>new</code>, mas n&#xF3;s definimos a inicializa&#xE7;&#xE3;o em um m&#xE9;todo chamado <code>initialize</code>, n&#xE3;o em um m&#xE9;todo <code>new</code>. Por que isso?</p>
+<p>A reposta &#xE9; que quando definimos um m&#xE9;todo <code>initialize</code>, o Crystal definiu um m&#xE9;todo <code>new</code> para n&#xF3;s, da seguinte forma:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">self</span></span>.new(nome)
+    instancia = <span class="hljs-constant">Pessoa</span>.allocate
+    instancia.initialize(nome)
+    instancia
   <span class="hljs-keyword">end</span>
  <span class="hljs-keyword">end</span>
 </code></pre>
-<p>First, note the <code>self.new</code> notation. This means that the method belongs to the <strong>class</strong> <code>Person</code>, not to particular instances of that class. This is why we can do <code>Person.new</code>.</p>
-<p>Second, <code>allocate</code> is a low-level class method that creates an uninitialized object of the given type. It basically allocates the necessary memory for it. Then <code>initialize</code> is invoked on it and then you get the instance. You generally never invoke <code>allocate</code>, as it is <a href="unsafe.html">unsafe</a>, but that&apos;s the reason why <code>new</code> and <code>initialize</code> are related.</p>
+<p>Primeiramente, perceba a nota&#xE7;&#xE3;o <code>self.new</code>. Isso significa que o m&#xE9;todo pertence &#xE0; <strong>classe</strong> <code>Pessoa</code>, e n&#xE3;o qualquer inst&#xE2;ncia em particular dessa classe. &#xC9; por isso que conseguimos chamar <code>Pessoa.new</code>.</p>
+<p>Em segundo lugar, <code>allocate</code> &#xE9; um m&#xE9;todo de classe de baixo n&#xED;vel que cria um objeto n&#xE3;o-inicializado com o tipo informado. Ele basicamente aloca a mem&#xF3;ria necess&#xE1;ria para isso. Ent&#xE3;o o m&#xE9;todo <code>initialize</code> &#xE9; invocado nele e ent&#xE3;o voc&#xEA; obt&#xE9;m uma inst&#xE2;ncia. Geralmente voc&#xEA; nunca invoca o m&#xE9;todo <code>allocate</code>, j&#xE1; que ele &#xE9; <a href="unsafe.html">inseguro</a>, mas esse &#xE9; o motivo pelo qual <code>new</code> e <code>initialize</code> est&#xE3;o relacionados.</p>
 
                     
                     </section>
@@ -2001,10 +2001,10 @@ peter.name <span class="hljs-comment">#=&gt; &quot;Peter&quot;</span>
         </div>
 
         
-        <a href="../syntax_and_semantics/classes_and_methods.html" class="navigation navigation-prev " aria-label="Previous page: Classes and methods"><i class="fa fa-angle-left"></i></a>
+        <a href="../syntax_and_semantics/classes_and_methods.html" class="navigation navigation-prev " aria-label="Previous page: Classes e métodos"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../syntax_and_semantics/methods_and_instance_variables.html" class="navigation navigation-next " aria-label="Next page: Methods and instance variables"><i class="fa fa-angle-right"></i></a>
+        <a href="../syntax_and_semantics/methods_and_instance_variables.html" class="navigation navigation-next " aria-label="Next page: Métodos e variáveis de instância"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Type restrictions | Linguagem de Programação Crystal</title>
+        <title>Restrições de tipos | Linguagem de Programação Crystal</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.3">
@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="4.7.3.7" data-basepath=".." data-revision="Tue Oct 13 2015 14:41:53 GMT-0300 (BRT)">
+    <div class="book" data-level="4.7.3.7" data-basepath=".." data-revision="Thu Nov 05 2015 00:53:30 GMT-0200 (BRST)">
     
 
 <div class="book-summary">
@@ -843,7 +843,7 @@
                         
                             <b>4.7.</b>
                         
-                        Types and methods
+                        Tipos e métodos
                     </a>
             
             
@@ -859,7 +859,7 @@
                         
                             <b>4.7.1.</b>
                         
-                        Everything is an object
+                        Tudo é um objeto
                     </a>
             
             
@@ -874,7 +874,7 @@
                         
                             <b>4.7.2.</b>
                         
-                        The Program
+                        O programa
                     </a>
             
             
@@ -889,7 +889,7 @@
                         
                             <b>4.7.3.</b>
                         
-                        Classes and methods
+                        Classes e métodos
                     </a>
             
             
@@ -905,7 +905,7 @@
                         
                             <b>4.7.3.1.</b>
                         
-                        new, initialize and allocate
+                        new, initialize e allocate
                     </a>
             
             
@@ -920,7 +920,7 @@
                         
                             <b>4.7.3.2.</b>
                         
-                        Methods and instance variables
+                        Métodos e variáveis de instância
                     </a>
             
             
@@ -935,7 +935,7 @@
                         
                             <b>4.7.3.3.</b>
                         
-                        Instance variables type inference
+                        Variáveis de instância e inferência de tipo
                     </a>
             
             
@@ -950,7 +950,7 @@
                         
                             <b>4.7.3.4.</b>
                         
-                        Overloading
+                        Sobrecarga
                     </a>
             
             
@@ -965,7 +965,7 @@
                         
                             <b>4.7.3.5.</b>
                         
-                        Default and named arguments
+                        Valores padrão e argumentos nomeados
                     </a>
             
             
@@ -980,7 +980,7 @@
                         
                             <b>4.7.3.6.</b>
                         
-                        Splats and tuples
+                        Splats e tuplas
                     </a>
             
             
@@ -995,7 +995,7 @@
                         
                             <b>4.7.3.7.</b>
                         
-                        Type restrictions
+                        Restrições de tipos
                     </a>
             
             
@@ -1010,7 +1010,7 @@
                         
                             <b>4.7.3.8.</b>
                         
-                        Return types
+                        Tipos de retorno
                     </a>
             
             
@@ -1025,7 +1025,7 @@
                         
                             <b>4.7.3.9.</b>
                         
-                        Operators
+                        Operadores
                     </a>
             
             
@@ -1040,7 +1040,7 @@
                         
                             <b>4.7.3.10.</b>
                         
-                        Visibility
+                        Visibilidade
                     </a>
             
             
@@ -1950,152 +1950,152 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="type-restrictions">Type restrictions</h1>
-<p>Type restrictions are type annotations put to method arguments to restrict the types accepted by that method.</p>
-<pre><code class="lang-crystal"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add</span></span>(x <span class="hljs-symbol">:</span> <span class="hljs-constant">Number</span>, y <span class="hljs-symbol">:</span> <span class="hljs-constant">Number</span>)
+                        <h1 id="restri%C3%A7%C3%B5es-de-tipo">Restri&#xE7;&#xF5;es de tipo</h1>
+<p>Restri&#xE7;&#xF5;es de tipo s&#xE3;o anota&#xE7;&#xF5;es de tipo colocadas nos argumentos de um m&#xE9;todo para restringir os tipos que s&#xE3;o aceitos por ele.</p>
+<pre><code class="lang-crystal"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adicionar</span></span>(x <span class="hljs-symbol">:</span> <span class="hljs-constant">Number</span>, y <span class="hljs-symbol">:</span> <span class="hljs-constant">Number</span>)
   x + y
 <span class="hljs-keyword">end</span>
 
 <span class="hljs-comment"># Ok</span>
-add <span class="hljs-number">1</span>, <span class="hljs-number">2</span> <span class="hljs-comment"># Ok</span>
+adicionar <span class="hljs-number">1</span>, <span class="hljs-number">2</span> <span class="hljs-comment"># Ok</span>
 
-<span class="hljs-comment"># Error: no overload matches &apos;add&apos; with types Bool, Bool</span>
-add <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>
+<span class="hljs-comment"># Error: no overload matches &apos;adicionar&apos; with types Bool, Bool</span>
+adicionar <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>
 </code></pre>
-<p>Note that if we had defined <code>add</code> without type restrictions, we would also have gotten a compile time error:</p>
-<pre><code class="lang-crystal"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add</span></span>(x, y)
+<p>Perceba que se n&#xE3;o tivessemos definido <code>adicionar</code> com restri&#xE7;&#xF5;es de tipo, tamb&#xE9;m receber&#xED;amos um erro de compila&#xE7;&#xE3;o:</p>
+<pre><code class="lang-crystal"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adicionar</span></span>(x, y)
   x + y
 <span class="hljs-keyword">end</span>
 
-add <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>
+adicionar <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>
 </code></pre>
-<p>The above code gives this compile error:</p>
-<pre><code>Error in foo.cr:6: instantiating &apos;add(Bool, Bool)&apos;
+<p>O c&#xF3;digo acima d&#xE1; o seguinte erro de compila&#xE7;&#xE3;o:</p>
+<pre><code>Error in foo.cr:6: instantiating &apos;adicionar(Bool, Bool)&apos;
 
-add true, false
+adicionar true, false
 ^~~
 
 in foo.cr:2: undefined method &apos;+&apos; for Bool
 
   x + y
     ^
-</code></pre><p>This is because when you invoke <code>add</code>, it is instantiated with the types of the arguments: every method invocation with a different type combination results in a different method instantiation.</p>
-<p>The only difference is that the first error message is a little more clear, but both definitions are safe in that you will get a compile time error anyway. So, in general, it&apos;s preferable not to specify type restrictions and almost only use them to define different method overloads. This results in more generic, reusable code. For example, if we define a class that has a <code>+</code> method but isn&apos;t a <code>Number</code>, we can use the <code>add</code> method that doesn&apos;t have type restrictions, but we can&apos;t use the <code>add</code> method that has restrictions.</p>
-<pre><code class="lang-crystal"><span class="hljs-comment"># A class that has a + method but isn&apos;t a Number</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Six</span></span>
+</code></pre><p>Isso ocorre porque quando voc&#xEA; invoca <code>adicionar</code>, ele &#xE9; instanciado com os tipos dos argumentos: toda invoca&#xE7;&#xE3;o de m&#xE9;todo com uma combina&#xE7;&#xE3;o diferente de tipos resulta em uma instancia&#xE7;&#xE3;o diferente do m&#xE9;todo.</p>
+<p>A &#xFA;nica diferen&#xE7;a &#xE9; que a primeira mensagem de erro &#xE9; um pouco mais clara, mas ambas as defini&#xE7;&#xF5;es s&#xE3;o seguras no sentido de que voc&#xEA; ter&#xE1; um erro de um jeito ou de outro. Ent&#xE3;o, de modo geral, &#xE9; prefer&#xED;vel n&#xE3;o especificar as restri&#xE7;&#xF5;es de tipo e praticamente s&#xF3; us&#xE1;-las para definir sobrecarga de m&#xE9;todos. Isso resulta em c&#xF3;digo mais gen&#xE9;rico e reutiliz&#xE1;vel. Por exemplo, se n&#xF3;s definirmos uma classe que tem um m&#xE9;todo <code>+</code>, mas n&#xE3;o &#xE9; um <code>Number</code>, podemos utilizar o m&#xE9;todo <code>adicionar</code> que n&#xE3;o tem restri&#xE7;&#xF5;es de tipo, mas n&#xE3;o aquele que tem restri&#xE7;&#xF5;es.</p>
+<pre><code class="lang-crystal"><span class="hljs-comment"># Uma classe que tem um m&#xE9;todo + mas n&#xE3;o &#xE9; um Number</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Seis</span></span>
   <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">+</span></span>(other)
     <span class="hljs-number">6</span> + other
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-<span class="hljs-comment"># add method without type restrictions</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add</span></span>(x, y)
+<span class="hljs-comment"># O m&#xE9;todo adicionar sem restri&#xE7;&#xF5;es de tipo</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adicionar</span></span>(x, y)
   x + y
 <span class="hljs-keyword">end</span>
 
 <span class="hljs-comment"># OK</span>
-add <span class="hljs-constant">Six</span>.new, <span class="hljs-number">10</span>
+adicionar <span class="hljs-constant">Seis</span>.new, <span class="hljs-number">10</span>
 
-<span class="hljs-comment"># add method with type restrictions</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">restricted_add</span></span>(x <span class="hljs-symbol">:</span> <span class="hljs-constant">Number</span>, y <span class="hljs-symbol">:</span> <span class="hljs-constant">Number</span>)
+<span class="hljs-comment"># O m&#xE9;todo adicionar com restri&#xE7;&#xF5;es de tipo</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adicionar_restrito</span></span>(x <span class="hljs-symbol">:</span> <span class="hljs-constant">Number</span>, y <span class="hljs-symbol">:</span> <span class="hljs-constant">Number</span>)
   x + y
 <span class="hljs-keyword">end</span>
 
-<span class="hljs-comment"># Error: no overload matches &apos;restricted_add&apos; with types Six, Int32</span>
-restricted_add <span class="hljs-constant">Six</span>.new, <span class="hljs-number">10</span>
+<span class="hljs-comment"># Error: no overload matches &apos;adicionar_restrito&apos; with types Seis, Int32</span>
+adicionar_restrito <span class="hljs-constant">Seis</span>.new, <span class="hljs-number">10</span>
 </code></pre>
-<p>Refer to the <a href="type_grammar.html">type grammar</a> for the notation used in type restrictions.</p>
-<h2 id="self-restriction">self restriction</h2>
-<p>A special type restriction is <code>self</code>:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">==</span></span>(other <span class="hljs-symbol">:</span> <span class="hljs-keyword">self</span>)
-    other.name == name
+<p>Consulte a <a href="type_grammar.html">gram&#xE1;tica de tipos</a> para ver a nota&#xE7;&#xE3;o usada nas restri&#xE7;&#xF5;es de tipo.</p>
+<h2 id="restri%C3%A7%C3%A3o-a-self">Restri&#xE7;&#xE3;o a <code>self</code></h2>
+<p>Um tipo de restri&#xE7;&#xE3;o especial &#xE9; o <code>self</code>:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">==</span></span>(outra <span class="hljs-symbol">:</span> <span class="hljs-keyword">self</span>)
+    outra.nome == nome
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">==</span></span>(other)
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">==</span></span>(outra)
     <span class="hljs-literal">false</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-john = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
-another_john = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
-peter = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;Peter&quot;</span>
+joao = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
+outro_joao = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
+pedro = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Pedro&quot;</span>
 
-john == another_john <span class="hljs-comment">#=&gt; true</span>
-john == peter <span class="hljs-comment">#=&gt; false (names differ)</span>
-john == <span class="hljs-number">1</span> <span class="hljs-comment">#=&gt; false (because 1 is not a Person)</span>
+joao == outro_joao <span class="hljs-comment">#=&gt; true</span>
+joao == pedro <span class="hljs-comment">#=&gt; false (nomes diferem)</span>
+joao == <span class="hljs-number">1</span> <span class="hljs-comment">#=&gt; false (porque 1 n&#xE3;o &#xE9; uma Pessoa)</span>
 </code></pre>
-<p>In the previous example <code>self</code> is the same as writing <code>Person</code>. But, in general, <code>self</code> is the same as writing the type that will finally own that method, which, when modules are involved, becomes more useful.</p>
-<p>As a side note, since <code>Person</code> inherits <code>Reference</code> the second definition of <code>==</code> is not needed, since it&apos;s already defined in <code>Reference</code>.</p>
-<p>Note that <code>self</code> always represents a match against an instance type, even in class methods:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">self</span></span>.compare(p1 <span class="hljs-symbol">:</span> <span class="hljs-keyword">self</span>, p2 <span class="hljs-symbol">:</span> <span class="hljs-keyword">self</span>)
-    p1.name == p2.name
+<p>No exemplo acima <code>self</code> &#xE9; o mesmo que escrever <code>Pessoa</code>. Mas, em geral, <code>self</code> &#xE9; o mesmo que escrever o tipo que finalmente ter&#xE1; o m&#xE9;todo, o que, quando envolve m&#xF3;dulos, torna-se mais &#xFA;til.</p>
+<p>Al&#xE9;m disso, uma vez que <code>Pessoa</code> herda de <code>Reference</code>, a segunda defini&#xE7;&#xE3;o de <code>==</code> n&#xE3;o &#xE9; necess&#xE1;ria, pois ela j&#xE1; &#xE9; definida em <code>Reference</code>.</p>
+<p>Perceba que <code>self</code> sempre representa o valor correspondente a um tipo de inst&#xE2;ncia, mesmo em m&#xE9;todo de classe:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">self</span></span>.comparar(p1 <span class="hljs-symbol">:</span> <span class="hljs-keyword">self</span>, p2 <span class="hljs-symbol">:</span> <span class="hljs-keyword">self</span>)
+    p1.nome == p2.nome
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-john = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
-peter = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;Peter&quot;</span>
+joao = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
+pedro = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Pedro&quot;</span>
 
-<span class="hljs-constant">Person</span>.compare(john, peter) <span class="hljs-comment"># OK</span>
+<span class="hljs-constant">Pessoa</span>.comparar(joao, pedro) <span class="hljs-comment"># OK</span>
 </code></pre>
-<p>You can use <code>self.class</code> to restrict to the Person type. The next section talks about the <code>.class</code> suffix in type restrictions.</p>
-<h2 id="classes-as-restrictions">Classes as restrictions</h2>
-<p>Using, for example, <code>Int32</code> as a type restriction makes the method only accept instances of <code>Int32</code>:</p>
+<p>Voc&#xEA; pode usar <code>self.class</code> para restringir ao tipo <code>Pessoa</code>. A pr&#xF3;xima se&#xE7;&#xE3;o fala sobre o sufixo <code>.class</code> nas restri&#xE7;&#xF5;es de tipo.</p>
+<h2 id="classes-e-restri%C3%A7%C3%B5es">Classes e restri&#xE7;&#xF5;es</h2>
+<p>Usar, por exemplo, <code>Int32</code> como uma restri&#xE7;&#xE3;o de tipo faz com que o m&#xE9;todo s&#xF3; aceite inst&#xE2;ncias de <code>Int32</code>:</p>
 <pre><code class="lang-crystal"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span></span>(x <span class="hljs-symbol">:</span> <span class="hljs-constant">Int32</span>)
 <span class="hljs-keyword">end</span>
 
-foo <span class="hljs-number">1</span>       <span class="hljs-comment"># OK</span>
-foo <span class="hljs-string">&quot;hello&quot;</span> <span class="hljs-comment"># Error</span>
+foo <span class="hljs-number">1</span>     <span class="hljs-comment"># OK</span>
+foo <span class="hljs-string">&quot;ol&#xE1;&quot;</span> <span class="hljs-comment"># Erro</span>
 </code></pre>
-<p>If you want a method to only accept the type Int32 (not instances of it), you use <code>.class</code>:</p>
+<p>Se voc&#xEA; quer que um m&#xE9;todo s&#xF3; aceite o tipo <code>Int32</code> (e n&#xE3;o int&#xE2;ncias dele), voc&#xEA; pode usar <code>.class</code>:</p>
 <pre><code class="lang-crystal"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span></span>(x <span class="hljs-symbol">:</span> <span class="hljs-constant">Int32</span>.<span class="hljs-keyword">class</span>)
 <span class="hljs-keyword">end</span>
 
 foo <span class="hljs-constant">Int32</span>  <span class="hljs-comment"># OK</span>
-foo <span class="hljs-constant">String</span> <span class="hljs-comment"># Error</span>
+foo <span class="hljs-constant">String</span> <span class="hljs-comment"># Erro</span>
 </code></pre>
-<p>The above is useful for providing overloads based on types, not instances:</p>
+<p>Isso &#xE9; &#xFA;til para disponibilizar sobrecargas baseadas em tipos, n&#xE3;o inst&#xE2;ncias:</p>
 <pre><code class="lang-crystal"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span></span>(x <span class="hljs-symbol">:</span> <span class="hljs-constant">Int32</span>.<span class="hljs-keyword">class</span>)
-  puts <span class="hljs-string">&quot;Got Int32&quot;</span>
+  puts <span class="hljs-string">&quot;Recebi Int32&quot;</span>
 <span class="hljs-keyword">end</span>
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span></span>(x <span class="hljs-symbol">:</span> <span class="hljs-constant">String</span>.<span class="hljs-keyword">class</span>)
-  puts <span class="hljs-string">&quot;Got String&quot;</span>
+  puts <span class="hljs-string">&quot;Recebi String&quot;</span>
 <span class="hljs-keyword">end</span>
 
-foo <span class="hljs-constant">Int32</span>  <span class="hljs-comment"># prints &quot;Got Int32&quot;</span>
-foo <span class="hljs-constant">String</span> <span class="hljs-comment"># prints &quot;Got String&quot;</span>
+foo <span class="hljs-constant">Int32</span>  <span class="hljs-comment"># imprime &quot;Recebi Int32&quot;</span>
+foo <span class="hljs-constant">String</span> <span class="hljs-comment"># imprime &quot;Recebi String&quot;</span>
 </code></pre>
-<h2 id="type-restrictions-in-splats">Type restrictions in splats</h2>
-<p>You can specify type restrictions in splats:</p>
+<h2 id="restri%C3%A7%C3%B5es-de-tipo-em-splats">Restri&#xE7;&#xF5;es de tipo em splats</h2>
+<p>Voc&#xEA; pode especificar restri&#xE7;&#xF5;es de tipos em splats:</p>
 <pre><code class="lang-crystal"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span></span>(*args <span class="hljs-symbol">:</span> <span class="hljs-constant">Int32</span>)
 <span class="hljs-keyword">end</span>
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span></span>(*args <span class="hljs-symbol">:</span> <span class="hljs-constant">String</span>)
 <span class="hljs-keyword">end</span>
 
-foo <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>       <span class="hljs-comment"># OK, invokes first overload</span>
-foo <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span> <span class="hljs-comment"># OK, invokes second overload</span>
-foo <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&quot;hello&quot;</span> <span class="hljs-comment"># Error</span>
-foo()             <span class="hljs-comment"># Error</span>
+foo <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>       <span class="hljs-comment"># OK, invoca a primeira sobrecarga</span>
+foo <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span> <span class="hljs-comment"># OK, invoca a segunda sobrecarga</span>
+foo <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&quot;hello&quot;</span> <span class="hljs-comment"># Erro</span>
+foo()             <span class="hljs-comment"># Erro</span>
 </code></pre>
-<p>When specifying a type, all elements in a tuple must match that type. Additionally, the empty-tuple doesn&apos;t match any of the above cases. If you want to support the empty-tuple case, add another overload:</p>
+<p>Ao especificar um tipo, todos os elementos em uma tupla precisam ser daquele tipo. Al&#xE9;m disso, uma tupla vazia n&#xE3;o corresponde a nenhum dos casos acima. Se voc&#xEA; quiser suportar uma tupla vazia, adicione outra sobrecarga:</p>
 <pre><code class="lang-crystal"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span></span>
-  <span class="hljs-comment"># This is the empty-tuple case</span>
+  <span class="hljs-comment"># Este &#xE9; o caso da tupla vazia</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<h2 id="free-variables">Free variables</h2>
-<p>If you use a single uppercase letter as a type restriction, the identifier becomes a free variable:</p>
+<h2 id="vari%C3%A1veis-livres">Vari&#xE1;veis livres</h2>
+<p>Se voc&#xEA; usar uma &#xFA;nica letra mai&#xFA;scula como uma restri&#xE7;&#xE3;o de tipo, o identificador se torna uma vari&#xE1;vel livre:</p>
 <pre><code class="lang-crystal"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span></span>(x <span class="hljs-symbol">:</span> <span class="hljs-constant">T</span>)
   <span class="hljs-constant">T</span>
 <span class="hljs-keyword">end</span>
 
-foo(<span class="hljs-number">1</span>)       <span class="hljs-comment">#=&gt; Int32</span>
-foo(<span class="hljs-string">&quot;hello&quot;</span>) <span class="hljs-comment">#=&gt; String</span>
+foo(<span class="hljs-number">1</span>)     <span class="hljs-comment">#=&gt; Int32</span>
+foo(<span class="hljs-string">&quot;ol&#xE1;&quot;</span>) <span class="hljs-comment">#=&gt; String</span>
 </code></pre>
-<p>That is, <code>T</code> becomes the type that was effectively used to instantiate the method.</p>
-<p>A free variable can be used to extract the type parameter of a generic type within a type restriction:</p>
+<p>Ou seja, <code>T</code> se torna o tipo que de fato foi usado para instanciar o m&#xE9;todo.</p>
+<p>Uma vari&#xE1;vel livre pode ser usada para extrair o par&#xE2;metro de tipo de um tipo gen&#xE9;rico em uma restri&#xE7;&#xE3;o de tipos:</p>
 <pre><code class="lang-crystal"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span></span>(x <span class="hljs-symbol">:</span> <span class="hljs-constant">Array</span>(<span class="hljs-constant">T</span>))
   <span class="hljs-constant">T</span>
 <span class="hljs-keyword">end</span>
@@ -2103,7 +2103,7 @@ foo(<span class="hljs-string">&quot;hello&quot;</span>) <span class="hljs-commen
 foo([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])   <span class="hljs-comment">#=&gt; Int32</span>
 foo([<span class="hljs-number">1</span>, <span class="hljs-string">&quot;a&quot;</span>]) <span class="hljs-comment">#=&gt; (Int32 | String)</span>
 </code></pre>
-<p>To create a method that accepts a type name, rather than an instance of a type, append <code>.class</code> to a free variable in the type restriction:</p>
+<p>Para criar um m&#xE9;todo que aceita um nome de tipo, ao inv&#xE9;s de uma inst&#xE2;ncia de um tipo, adicione <code>.class</code> &#xE0; vari&#xE1;vel livre na restri&#xE7;&#xE3;o de tipo:</p>
 <pre><code class="lang-crystal"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span></span>(x <span class="hljs-symbol">:</span> <span class="hljs-constant">T</span>.<span class="hljs-keyword">class</span>)
   <span class="hljs-constant">Array</span>(<span class="hljs-constant">T</span>)
 <span class="hljs-keyword">end</span>
@@ -2111,8 +2111,8 @@ foo([<span class="hljs-number">1</span>, <span class="hljs-string">&quot;a&quot;
 foo(<span class="hljs-constant">Int32</span>)  <span class="hljs-comment">#=&gt; Array(Int32)</span>
 foo(<span class="hljs-constant">String</span>) <span class="hljs-comment">#=&gt; Array(String)</span>
 </code></pre>
-<h2 id="free-variables-in-constructors">Free variables in constructors</h2>
-<p>Free variables allow type inference to be used when creating generic types. Refer to the <a href="generics.html">Generics</a> section.</p>
+<h2 id="vari%C3%A1veis-livres-em-construtores">Vari&#xE1;veis livres em construtores</h2>
+<p>Vari&#xE1;veis livres permitem que a indu&#xE7;&#xE3;o de tipo seja usada ao criar tipos gen&#xE9;ricos. Consulte a se&#xE7;&#xE3;o <a href="generics.html">Programa&#xE7;&#xE3;o gen&#xE9;rica</a>.</p>
 
                     
                     </section>
@@ -2123,10 +2123,10 @@ foo(<span class="hljs-constant">String</span>) <span class="hljs-comment">#=&gt;
         </div>
 
         
-        <a href="../syntax_and_semantics/splats_and_tuples.html" class="navigation navigation-prev " aria-label="Previous page: Splats and tuples"><i class="fa fa-angle-left"></i></a>
+        <a href="../syntax_and_semantics/splats_and_tuples.html" class="navigation navigation-prev " aria-label="Previous page: Splats e tuplas"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../syntax_and_semantics/return_types.html" class="navigation navigation-next " aria-label="Next page: Return types"><i class="fa fa-angle-right"></i></a>
+        <a href="../syntax_and_semantics/return_types.html" class="navigation navigation-next " aria-label="Next page: Tipos de retorno"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

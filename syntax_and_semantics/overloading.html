@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Overloading | Linguagem de Programação Crystal</title>
+        <title>Sobrecarga | Linguagem de Programação Crystal</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.3">
@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="4.7.3.4" data-basepath=".." data-revision="Tue Oct 13 2015 14:41:53 GMT-0300 (BRT)">
+    <div class="book" data-level="4.7.3.4" data-basepath=".." data-revision="Thu Nov 05 2015 00:53:30 GMT-0200 (BRST)">
     
 
 <div class="book-summary">
@@ -843,7 +843,7 @@
                         
                             <b>4.7.</b>
                         
-                        Types and methods
+                        Tipos e métodos
                     </a>
             
             
@@ -859,7 +859,7 @@
                         
                             <b>4.7.1.</b>
                         
-                        Everything is an object
+                        Tudo é um objeto
                     </a>
             
             
@@ -874,7 +874,7 @@
                         
                             <b>4.7.2.</b>
                         
-                        The Program
+                        O programa
                     </a>
             
             
@@ -889,7 +889,7 @@
                         
                             <b>4.7.3.</b>
                         
-                        Classes and methods
+                        Classes e métodos
                     </a>
             
             
@@ -905,7 +905,7 @@
                         
                             <b>4.7.3.1.</b>
                         
-                        new, initialize and allocate
+                        new, initialize e allocate
                     </a>
             
             
@@ -920,7 +920,7 @@
                         
                             <b>4.7.3.2.</b>
                         
-                        Methods and instance variables
+                        Métodos e variáveis de instância
                     </a>
             
             
@@ -935,7 +935,7 @@
                         
                             <b>4.7.3.3.</b>
                         
-                        Instance variables type inference
+                        Variáveis de instância e inferência de tipo
                     </a>
             
             
@@ -950,7 +950,7 @@
                         
                             <b>4.7.3.4.</b>
                         
-                        Overloading
+                        Sobrecarga
                     </a>
             
             
@@ -965,7 +965,7 @@
                         
                             <b>4.7.3.5.</b>
                         
-                        Default and named arguments
+                        Valores padrão e argumentos nomeados
                     </a>
             
             
@@ -980,7 +980,7 @@
                         
                             <b>4.7.3.6.</b>
                         
-                        Splats and tuples
+                        Splats e tuplas
                     </a>
             
             
@@ -995,7 +995,7 @@
                         
                             <b>4.7.3.7.</b>
                         
-                        Type restrictions
+                        Restrições de tipos
                     </a>
             
             
@@ -1010,7 +1010,7 @@
                         
                             <b>4.7.3.8.</b>
                         
-                        Return types
+                        Tipos de retorno
                     </a>
             
             
@@ -1025,7 +1025,7 @@
                         
                             <b>4.7.3.9.</b>
                         
-                        Operators
+                        Operadores
                     </a>
             
             
@@ -1040,7 +1040,7 @@
                         
                             <b>4.7.3.10.</b>
                         
-                        Visibility
+                        Visibilidade
                     </a>
             
             
@@ -1950,106 +1950,106 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="overloading">Overloading</h1>
-<p>We can define a <code>become_older</code> method that accepts a number indicating the years to grow:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>
-    <span class="hljs-variable">@age</span> += <span class="hljs-number">1</span>
+                        <h1 id="sobrecarga">Sobrecarga</h1>
+<p>Podemos definir um m&#xE9;todo <code>envelhecer</code> que aceita um n&#xFA;mero indicando os anos a acrescentar:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>
+    <span class="hljs-variable">@idade</span> += <span class="hljs-number">1</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>(years)
-    <span class="hljs-variable">@age</span> += years
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>(anos)
+    <span class="hljs-variable">@idade</span> += anos
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-john = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
-john.age <span class="hljs-comment">#=&gt; 0</span>
+joao = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
+joao.idade <span class="hljs-comment">#=&gt; 0</span>
 
-john.become_older
-john.age <span class="hljs-comment">#=&gt; 1</span>
+joao.envelhecer
+joao.idade <span class="hljs-comment">#=&gt; 1</span>
 
-john.become_older <span class="hljs-number">5</span>
-john.age <span class="hljs-comment">#=&gt; 6</span>
+joao.envelhecer <span class="hljs-number">5</span>
+joao.idade <span class="hljs-comment">#=&gt; 6</span>
 </code></pre>
-<p>That is, you can have different methods with the same name and different number of arguments and they will be considered as separate methods. This is called <em>method overloading</em>.</p>
-<p>Methods overload by several criteria:</p>
+<p>Ou seja, podemos ter m&#xE9;todos diferentes com o mesmo nome e n&#xFA;meros diferentes de argumentos, e eles ser&#xE3;o considerados como m&#xE9;todos separados. Isso &#xE9; chamado de <em>sobrecarga de m&#xE9;todos</em>.</p>
+<p>M&#xE9;todos s&#xE3;o sobrecarregados por diversos crit&#xE9;rios:</p>
 <ul>
-<li>The number of arguments</li>
-<li>The type restrictions applied to arguments</li>
-<li>Whether the method accepts a <a href="blocks_and_procs.html">block</a> or not</li>
+<li>O n&#xFA;mero de argumentos</li>
+<li>As restri&#xE7;&#xF5;es de tipos aplicadas aos argumentos</li>
+<li>Se o m&#xE9;todo aceita ou n&#xE3;o um <a href="blocks_and_procs.html">bloco</a></li>
 </ul>
-<p>For example, we can define four different <code>become_older</code> methods:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-comment"># Increases age by one</span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>
-    <span class="hljs-variable">@age</span> += <span class="hljs-number">1</span>
+<p>Por exemplo, podemos definir quatro m&#xE9;todos <code>envelhecer</code> diferentes:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-comment"># Aumenta a idade em um</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>
+    <span class="hljs-variable">@idade</span> += <span class="hljs-number">1</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-comment"># Increases age by the given number of years</span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>(years <span class="hljs-symbol">:</span> <span class="hljs-constant">Int32</span>)
-    <span class="hljs-variable">@age</span> += years
+  <span class="hljs-comment"># Aumenta a idade pelo n&#xFA;mero de anos informado</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>(anos <span class="hljs-symbol">:</span> <span class="hljs-constant">Int32</span>)
+    <span class="hljs-variable">@idade</span> += anos
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-comment"># Increases age by the given number of years, as a String</span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>(years <span class="hljs-symbol">:</span> <span class="hljs-constant">String</span>)
-    <span class="hljs-variable">@age</span> += years.to_i
+  <span class="hljs-comment"># Aumenta a idade pelo n&#xFA;mero de anos informado como uma String</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>(anos <span class="hljs-symbol">:</span> <span class="hljs-constant">String</span>)
+    <span class="hljs-variable">@idade</span> += anos.to_i
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-comment"># Yields the current age of this person and increases</span>
-  <span class="hljs-comment"># its age by the value returned by the block</span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>
-    <span class="hljs-variable">@age</span> += <span class="hljs-keyword">yield</span> <span class="hljs-variable">@age</span>
+  <span class="hljs-comment"># Faz o yield da idade desta pessoa e aumenta sua idade pelo valor retornado</span>
+  <span class="hljs-comment"># pelo bloco</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>
+    <span class="hljs-variable">@idade</span> += <span class="hljs-keyword">yield</span> <span class="hljs-variable">@idade</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-person = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
+pessoa = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
 
-person.become_older
-person.age <span class="hljs-comment">#=&gt; 1</span>
+pessoa.envelhecer
+pessoa.idade <span class="hljs-comment">#=&gt; 1</span>
 
-person.become_older <span class="hljs-number">5</span>
-person.age <span class="hljs-comment">#=&gt; 6</span>
+pessoa.envelhecer <span class="hljs-number">5</span>
+pessoa.idade <span class="hljs-comment">#=&gt; 6</span>
 
-person.become_older <span class="hljs-string">&quot;12&quot;</span>
-person.age <span class="hljs-comment">#=&gt; 18</span>
+pessoa.envelhecer <span class="hljs-string">&quot;12&quot;</span>
+pessoa.idade <span class="hljs-comment">#=&gt; 18</span>
 
-person.become_older <span class="hljs-keyword">do</span> |current_age|
-  current_age &lt; <span class="hljs-number">20</span> ? <span class="hljs-number">10</span> <span class="hljs-symbol">:</span> <span class="hljs-number">30</span>
+pessoa.envelhecer <span class="hljs-keyword">do</span> |idade_atual|
+  idade_atual &lt; <span class="hljs-number">20</span> ? <span class="hljs-number">10</span> <span class="hljs-symbol">:</span> <span class="hljs-number">30</span>
 <span class="hljs-keyword">end</span>
-person.age <span class="hljs-comment">#=&gt; 28</span>
+pessoa.idade <span class="hljs-comment">#=&gt; 28</span>
 </code></pre>
-<p>Note that in the case of the method that yields, the compiler figured this out because there&apos;s a <code>yield</code> expression. To make this more explicit, you can add a dummy <code>&amp;block</code> argument at the end:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>(&amp;block)
-    <span class="hljs-variable">@age</span> += <span class="hljs-keyword">yield</span> <span class="hljs-variable">@age</span>
+<p>Perceba que no caso do m&#xE9;todo com yield, o compilador descobriu que usa blocos por causa de uma express&#xE3;o <code>yield</code>. Para tornar isso mais expl&#xED;cito, voc&#xEA; pode adicionar um argumento opcional <code>&amp;bloco</code> no final:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>(&amp;bloco)
+    <span class="hljs-variable">@idade</span> += <span class="hljs-keyword">yield</span> <span class="hljs-variable">@idade</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<p>In generated documentation the dummy <code>&amp;block</code> method will always appear, regardless of you writing it or not.</p>
-<p>Given the same number of arguments, the compiler will try to sort them by leaving the less restrictive ones to the end:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-  <span class="hljs-comment"># First, this method is defined</span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>(age)
-    <span class="hljs-variable">@age</span> += age
+<p>Na documenta&#xE7;&#xE3;o gerada, o m&#xE9;todo com o <code>&amp;bloco</code> sempre ir&#xE1; aparecer, independente de voc&#xEA; escrev&#xEA;-lo ou n&#xE3;o.</p>
+<p>Dado o mesmo n&#xFA;mero de argumentos, o compilador tentar&#xE1; organiz&#xE1;-los deixando os menos restritivos para o final:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pessoa</span></span>
+  <span class="hljs-comment"># Primeiro define este m&#xE9;todo</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>(idade)
+    <span class="hljs-variable">@idade</span> += idade
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-comment"># Since &quot;String&quot; is more restrictive than no restriction</span>
-  <span class="hljs-comment"># at all, the compiler puts this method before the previous</span>
-  <span class="hljs-comment"># one when considering which overload matches.</span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">become_older</span></span>(age <span class="hljs-symbol">:</span> <span class="hljs-constant">String</span>)
-    <span class="hljs-variable">@age</span> += age.to_i
+  <span class="hljs-comment"># J&#xE1; que &quot;String&quot; &#xE9; mais restritivo do que n&#xE3;o ter nenhuma restri&#xE7;&#xE3;o, o</span>
+  <span class="hljs-comment"># compilador coloca este m&#xE9;todo antes do anterior ao considerar qual</span>
+  <span class="hljs-comment"># sobrecarga corresponde &#xE0; chamada.</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">envelhecer</span></span>(idade <span class="hljs-symbol">:</span> <span class="hljs-constant">String</span>)
+    <span class="hljs-variable">@idade</span> += idade.to_i
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-person = <span class="hljs-constant">Person</span>.new <span class="hljs-string">&quot;John&quot;</span>
+pessoa = <span class="hljs-constant">Pessoa</span>.new <span class="hljs-string">&quot;Jo&#xE3;o&quot;</span>
 
-<span class="hljs-comment"># Invokes the first definition</span>
-person.become_older <span class="hljs-number">20</span>
+<span class="hljs-comment"># Invoca a primeira defini&#xE7;&#xE3;o</span>
+pessoa.envelhecer <span class="hljs-number">20</span>
 
-<span class="hljs-comment"># Invokes the second definition</span>
-person.become_older <span class="hljs-string">&quot;12&quot;</span>
+<span class="hljs-comment"># Invoca a segunda defini&#xE7;&#xE3;o</span>
+pessoa.envelhecer <span class="hljs-string">&quot;12&quot;</span>
 </code></pre>
-<p>However, the compiler cannot always figure out the order because there isn&apos;t always a total ordering, so it&apos;s always better to put less restrictive methods at the end.</p>
+<p>No entanto, nem sempre o compilador descrobrir&#xE1; a ordem porque nem sempre h&#xE1; uma ordem, ent&#xE3;o &#xE9; melhor sempre colocar os m&#xE9;todos menos restritivos no final.</p>
 
                     
                     </section>
@@ -2060,10 +2060,10 @@ person.become_older <span class="hljs-string">&quot;12&quot;</span>
         </div>
 
         
-        <a href="../syntax_and_semantics/instance_variables_type_inference.html" class="navigation navigation-prev " aria-label="Previous page: Instance variables type inference"><i class="fa fa-angle-left"></i></a>
+        <a href="../syntax_and_semantics/instance_variables_type_inference.html" class="navigation navigation-prev " aria-label="Previous page: Variáveis de instância e inferência de tipo"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../syntax_and_semantics/default_and_named_arguments.html" class="navigation navigation-next " aria-label="Next page: Default and named arguments"><i class="fa fa-angle-right"></i></a>
+        <a href="../syntax_and_semantics/default_and_named_arguments.html" class="navigation navigation-next " aria-label="Next page: Valores padrão e argumentos nomeados"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

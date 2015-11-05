@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Operators | Linguagem de Programação Crystal</title>
+        <title>Operadores | Linguagem de Programação Crystal</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.3">
@@ -40,7 +40,7 @@
     <body>
         
         
-    <div class="book" data-level="4.7.3.9" data-basepath=".." data-revision="Tue Oct 13 2015 14:41:53 GMT-0300 (BRT)">
+    <div class="book" data-level="4.7.3.9" data-basepath=".." data-revision="Thu Nov 05 2015 00:53:30 GMT-0200 (BRST)">
     
 
 <div class="book-summary">
@@ -843,7 +843,7 @@
                         
                             <b>4.7.</b>
                         
-                        Types and methods
+                        Tipos e métodos
                     </a>
             
             
@@ -859,7 +859,7 @@
                         
                             <b>4.7.1.</b>
                         
-                        Everything is an object
+                        Tudo é um objeto
                     </a>
             
             
@@ -874,7 +874,7 @@
                         
                             <b>4.7.2.</b>
                         
-                        The Program
+                        O programa
                     </a>
             
             
@@ -889,7 +889,7 @@
                         
                             <b>4.7.3.</b>
                         
-                        Classes and methods
+                        Classes e métodos
                     </a>
             
             
@@ -905,7 +905,7 @@
                         
                             <b>4.7.3.1.</b>
                         
-                        new, initialize and allocate
+                        new, initialize e allocate
                     </a>
             
             
@@ -920,7 +920,7 @@
                         
                             <b>4.7.3.2.</b>
                         
-                        Methods and instance variables
+                        Métodos e variáveis de instância
                     </a>
             
             
@@ -935,7 +935,7 @@
                         
                             <b>4.7.3.3.</b>
                         
-                        Instance variables type inference
+                        Variáveis de instância e inferência de tipo
                     </a>
             
             
@@ -950,7 +950,7 @@
                         
                             <b>4.7.3.4.</b>
                         
-                        Overloading
+                        Sobrecarga
                     </a>
             
             
@@ -965,7 +965,7 @@
                         
                             <b>4.7.3.5.</b>
                         
-                        Default and named arguments
+                        Valores padrão e argumentos nomeados
                     </a>
             
             
@@ -980,7 +980,7 @@
                         
                             <b>4.7.3.6.</b>
                         
-                        Splats and tuples
+                        Splats e tuplas
                     </a>
             
             
@@ -995,7 +995,7 @@
                         
                             <b>4.7.3.7.</b>
                         
-                        Type restrictions
+                        Restrições de tipos
                     </a>
             
             
@@ -1010,7 +1010,7 @@
                         
                             <b>4.7.3.8.</b>
                         
-                        Return types
+                        Tipos de retorno
                     </a>
             
             
@@ -1025,7 +1025,7 @@
                         
                             <b>4.7.3.9.</b>
                         
-                        Operators
+                        Operadores
                     </a>
             
             
@@ -1040,7 +1040,7 @@
                         
                             <b>4.7.3.10.</b>
                         
-                        Visibility
+                        Visibilidade
                     </a>
             
             
@@ -1950,100 +1950,102 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="operators">Operators</h1>
-<p>Operators like <code>+</code> and <code>-</code> are regular method calls. For example:</p>
+                        <h1 id="operadores">Operadores</h1>
+<p>Operadores como <code>+</code> e <code>-</code> s&#xE3;o chamadas regulares de m&#xE9;todos. Por exemplo:</p>
 <pre><code class="lang-crystal">a + b
 </code></pre>
-<p>is the same as:</p>
+<p>&#xE9; o mesmo que:</p>
 <pre><code class="lang-crystal">a.+(b)
 </code></pre>
-<p>You can define an operator for a type like this:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Vector2</span></span>
+<p>Voc&#xEA; pode definir um operador para um tipo da seguinte maneira:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Vetor2</span></span>
   getter x, y
 
   <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>(<span class="hljs-variable">@x</span>, <span class="hljs-variable">@y</span>)
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">+</span></span>(other)
-    <span class="hljs-constant">Vector2</span>.new(x + other.x, y + other.y)
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">+</span></span>(outro)
+    <span class="hljs-constant">Vetor2</span>.new(x + outro.x, y + outro.y)
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-v1 = <span class="hljs-constant">Vector2</span>.new(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
-v2 = <span class="hljs-constant">Vector2</span>.new(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
-v1 + v2               <span class="hljs-comment">#=&gt; Vector2(@x=4, @y=6)</span>
+v1 = <span class="hljs-constant">Vetor2</span>.new(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+v2 = <span class="hljs-constant">Vetor2</span>.new(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
+v1 + v2               <span class="hljs-comment">#=&gt; Vetor2(@x=4, @y=6)</span>
 </code></pre>
-<p>Next follows the full list of operators with their usual meaning.</p>
-<h2 id="unary-operators">Unary operators</h2>
-<pre><code class="lang-crystal">+   <span class="hljs-comment"># positive</span>
--   <span class="hljs-comment"># negative</span>
-!   <span class="hljs-comment"># not</span>
-~   <span class="hljs-comment"># bitwise complement</span>
+<p>Veja a seguir uma lista completa de operadores com seu significado usual.</p>
+<h2 id="operadores-un%C3%A1rios">Operadores un&#xE1;rios</h2>
+<pre><code class="lang-crystal">+   <span class="hljs-comment"># positivo</span>
+-   <span class="hljs-comment"># negativo</span>
+!   <span class="hljs-comment"># n&#xE3;o</span>
+~   <span class="hljs-comment"># complemento bit a bit</span>
 </code></pre>
-<p>These are defined without arguments. For example</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Vector2</span></span>
+<p>Estes s&#xE3;o definidos sem argumentos. Por exemplo</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Vetor2</span></span>
   <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">-</span></span>
-    <span class="hljs-constant">Vector2</span>.new(-x, -y)
+    <span class="hljs-constant">Vetor2</span>.new(-x, -y)
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-v1 = <span class="hljs-constant">Vector2</span>.new(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
--v1                    <span class="hljs-comment">#=&gt; Vector2(@x=-1, @y=-2)</span>
+v1 = <span class="hljs-constant">Vetor2</span>.new(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+-v1                   <span class="hljs-comment">#=&gt; Vetor2(@x=-1, @y=-2)</span>
 </code></pre>
-<h2 id="binary-operators">Binary operators</h2>
-<pre><code class="lang-crystal">+   <span class="hljs-comment"># addition</span>
--   <span class="hljs-comment"># subtraction</span>
-*   <span class="hljs-comment"># multiplication</span>
-/   <span class="hljs-comment"># division</span>
-%   <span class="hljs-comment"># modulo</span>
-!   <span class="hljs-comment"># negation</span>
-&amp;   <span class="hljs-comment"># bitwise and</span>
-|   <span class="hljs-comment"># bitwise or</span>
-^   <span class="hljs-comment"># bitwise xor</span>
-**  <span class="hljs-comment"># exponentiation</span>
-&lt;&lt;  <span class="hljs-comment"># shift left, append</span>
-&gt;&gt;  <span class="hljs-comment"># shift right</span>
-==  <span class="hljs-comment"># equals</span>
-!=  <span class="hljs-comment"># not equals</span>
-&lt;   <span class="hljs-comment"># less</span>
-&lt;=  <span class="hljs-comment"># less or equal</span>
-&gt;   <span class="hljs-comment"># greater</span>
-&gt;=  <span class="hljs-comment"># greater or equal</span>
-&lt;=&gt; <span class="hljs-comment"># comparison</span>
-=== <span class="hljs-comment"># case equality</span>
+<h2 id="operadores-bin%C3%A1rios">Operadores bin&#xE1;rios</h2>
+<pre><code class="lang-crystal">+   <span class="hljs-comment"># adi&#xE7;&#xE3;o</span>
+-   <span class="hljs-comment"># subtra&#xE7;&#xE3;o</span>
+*   <span class="hljs-comment"># multiplica&#xE7;&#xE3;o</span>
+/   <span class="hljs-comment"># divis&#xE3;o</span>
+%   <span class="hljs-comment"># m&#xF3;dulo</span>
+!   <span class="hljs-comment"># nega&#xE7;&#xE3;o</span>
+&amp;   <span class="hljs-comment"># and bit a bit</span>
+|   <span class="hljs-comment"># or bit a bit</span>
+^   <span class="hljs-comment"># xor bit a bit</span>
+**  <span class="hljs-comment"># exponencia&#xE7;&#xE3;o</span>
+&lt;&lt;  <span class="hljs-comment"># deslocar para a esquerda, anexar</span>
+&gt;&gt;  <span class="hljs-comment"># deslocar para a direita</span>
+==  <span class="hljs-comment"># igual</span>
+!=  <span class="hljs-comment"># desigual</span>
+&lt;   <span class="hljs-comment"># menor</span>
+&lt;=  <span class="hljs-comment"># menor ou igual</span>
+&gt;   <span class="hljs-comment"># maior</span>
+&gt;=  <span class="hljs-comment"># maior ou igual</span>
+&lt;=&gt; <span class="hljs-comment"># compara&#xE7;&#xE3;o</span>
+=== <span class="hljs-comment"># igualdade de case</span>
 </code></pre>
-<h2 id="indexing">Indexing</h2>
-<pre><code class="lang-crystal">[]  <span class="hljs-comment"># array index (raises on out of bounds)</span>
-[]? <span class="hljs-comment"># array index (nil on out of bounds)</span>
-[]= <span class="hljs-comment"># array index assignment</span>
+<h2 id="indexa%C3%A7%C3%A3o">Indexa&#xE7;&#xE3;o</h2>
+<pre><code class="lang-crystal">[]  <span class="hljs-comment"># &#xED;ndice do array (lan&#xE7;a exce&#xE7;&#xE3;o se estiver fora do limite)</span>
+[]? <span class="hljs-comment"># &#xED;ndice do array (nil se estiver fora do limite)</span>
+[]= <span class="hljs-comment"># atribui&#xE7;&#xE3;o ao &#xED;ndice do array</span>
 </code></pre>
-<p>For example:</p>
-<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyArray</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">[]</span></span>(index)
+<p>Por exemplo:</p>
+<pre><code class="lang-crystal"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MeuArray</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">[]</span></span>(indice)
     <span class="hljs-comment"># ...</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">[]</span></span>(index1, index2, index3)
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">[]</span></span>(indice1, indice2, indice3)
     <span class="hljs-comment"># ...</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">[]=</span></span>(index, value)
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">[]=</span></span>(indice, valor)
     <span class="hljs-comment"># ...</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-array = <span class="hljs-constant">MyArray</span>.new
+array = <span class="hljs-constant">MeuArray</span>.new
 
-array[<span class="hljs-number">1</span>]       <span class="hljs-comment"># invokes the first method</span>
-array[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] <span class="hljs-comment"># invokes the second method</span>
-array[<span class="hljs-number">1</span>] = <span class="hljs-number">2</span>   <span class="hljs-comment"># invokes the third method</span>
+array[<span class="hljs-number">1</span>]       <span class="hljs-comment"># invoca o primeiro m&#xE9;todo</span>
+array[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] <span class="hljs-comment"># invoca o segundo m&#xE9;todo</span>
+array[<span class="hljs-number">1</span>] = <span class="hljs-number">2</span>   <span class="hljs-comment"># invoca o terceiro m&#xE9;todo</span>
 
-array.[](<span class="hljs-number">1</span>)       <span class="hljs-comment"># invokes the first method</span>
-array.[](<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <span class="hljs-comment"># invokes the second method</span>
-array.[]=(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)   <span class="hljs-comment"># invokes the third method</span>
+array.[](<span class="hljs-number">1</span>)       <span class="hljs-comment"># invoca o primeiro m&#xE9;todo</span>
+array.[](<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <span class="hljs-comment"># invoca o segundo m&#xE9;todo</span>
+array.[]=(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)   <span class="hljs-comment"># invoca o terceiro m&#xE9;todo</span>
 </code></pre>
-<h2 id="meaning">Meaning</h2>
-<p>One can assign any meaning to the operators, but the convention is to follow the above ones to avoid cryptic code, or code that behaves in an unexpected way.</p>
+<h2 id="significado">Significado</h2>
+<p>Pode-se atribuir qualquer significado aos operadores, mas a conven&#xE7;&#xE3;o &#xE9; seguir
+os significados acima para evitar c&#xF3;digo cr&#xED;ptico ou c&#xF3;digo que se comporta de
+maneira inesperada.</p>
 
                     
                     </section>
@@ -2054,10 +2056,10 @@ array.[]=(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>
         </div>
 
         
-        <a href="../syntax_and_semantics/return_types.html" class="navigation navigation-prev " aria-label="Previous page: Return types"><i class="fa fa-angle-left"></i></a>
+        <a href="../syntax_and_semantics/return_types.html" class="navigation navigation-prev " aria-label="Previous page: Tipos de retorno"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../syntax_and_semantics/visibility.html" class="navigation navigation-next " aria-label="Next page: Visibility"><i class="fa fa-angle-right"></i></a>
+        <a href="../syntax_and_semantics/visibility.html" class="navigation navigation-next " aria-label="Next page: Visibilidade"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
