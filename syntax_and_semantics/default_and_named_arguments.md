@@ -1,42 +1,42 @@
-# Default and named arguments
+# Valores padrão e argumentos nomeados
 
-A method can specify default values for the last arguments:
+Um método pode especificar valores padrão para os últimos argumentos:
 
 ```crystal
-class Person
-  def become_older(by = 1)
-    @age += by
+class Pessoa
+  def envelhecer(anos = 1)
+    @idade += anos
   end
 end
 
-john = Person.new "John"
-john.age #=> 0
+joao = Pessoa.new "João"
+joao.idade #=> 0
 
-john.become_older
-john.age #=> 1
+joao.envelhecer
+joao.idade #=> 1
 
-john.become_older 2
-john.age #=> 3
+joao.envelhecer 2
+joao.idade #=> 3
 ```
 
-To specify the values of arguments that have default values you can also use their names in the invocation:
+Para especificar os valores dos argumentos que tem um valor padrão, você também pode usar seus nomes na invocação:
 
 ```crystal
-john.become_older by: 5
+joao.envelhecer anos: 5
 ```
 
-When the method has many default arguments the order of the names in the invocation doesn't matter, and some names can be ommited:
+Quando o método possui vários argumentos com um valor padrão, a ordem dos nomes na invocação não importa, e alguns nomes podem ser omitidos:
 
 ```crystal
-def some_method(x, y = 1, z = 2, w = 3)
-  # do something...
+def algum_metodo(x, y = 1, z = 2, w = 3)
+  # faz alguma coisa...
 end
 
-some_method 10 # x = 10, y = 1, z = 2, w = 3
-some_method 10, z: 10 # x = 10, y = 1, z = 10, w = 3
-some_method 10, w: 1, y: 2, z: 3 # x = 10, y = 2, z = 3, w = 1
+algum_metodo 10 # x = 10, y = 1, z = 2, w = 3
+algum_metodo 10, z: 10 # x = 10, y = 1, z = 10, w = 3
+algum_metodo 10, w: 1, y: 2, z: 3 # x = 10, y = 2, z = 3, w = 1
 ```
 
-Note that in the above example you can't use `x`'s name, as it doesn't have a default value.
+Perceba que no exemplo acima você não pode usar o nome do `x`, já que ele não possui um valor padrão.
 
-In this way, default arguments and named arguments are related to each other: when you specify default arguments you are also allowing the caller to use their names. Be wise and choose good names.
+Desta forma, argumentos com valor padrão e argumentos nomeados estão relacionados uns com os outros: quando você especifica argumentos com um valor padrão você também está permitindo que quem chama use seus nomes. Seja sábio e escolha bons nomes.

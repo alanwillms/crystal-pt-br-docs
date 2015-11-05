@@ -1,35 +1,35 @@
-# Type restrictions
+# Restrições de tipo
 
-Type restrictions are type annotations put to method arguments to restrict the types accepted by that method.
+Restrições de tipo são anotações de tipo colocadas nos argumentos de um método para restringir os tipos que são aceitos por ele.
 
 ```crystal
-def add(x : Number, y : Number)
+def adicionar(x : Number, y : Number)
   x + y
 end
 
 # Ok
-add 1, 2 # Ok
+adicionar 1, 2 # Ok
 
-# Error: no overload matches 'add' with types Bool, Bool
-add true, false
+# Error: no overload matches 'adicionar' with types Bool, Bool
+adicionar true, false
 ```
 
-Note that if we had defined `add` without type restrictions, we would also have gotten a compile time error:
+Perceba que se não tivessemos definido `adicionar` com restrições de tipo, também receberíamos um erro de compilação:
 
 ```crystal
-def add(x, y)
+def adicionar(x, y)
   x + y
 end
 
-add true, false
+adicionar true, false
 ```
 
-The above code gives this compile error:
+O código acima dá o seguinte erro de compilação:
 
 ```
-Error in foo.cr:6: instantiating 'add(Bool, Bool)'
+Error in foo.cr:6: instantiating 'adicionar(Bool, Bool)'
 
-add true, false
+adicionar true, false
 ^~~
 
 in foo.cr:2: undefined method '+' for Bool
@@ -38,122 +38,122 @@ in foo.cr:2: undefined method '+' for Bool
     ^
 ```
 
-This is because when you invoke `add`, it is instantiated with the types of the arguments: every method invocation with a different type combination results in a different method instantiation.
+Isso ocorre porque quando você invoca `adicionar`, ele é instanciado com os tipos dos argumentos: toda invocação de método com uma combinação diferente de tipos resulta em uma instanciação diferente do método.
 
-The only difference is that the first error message is a little more clear, but both definitions are safe in that you will get a compile time error anyway. So, in general, it's preferable not to specify type restrictions and almost only use them to define different method overloads. This results in more generic, reusable code. For example, if we define a class that has a `+` method but isn't a `Number`, we can use the `add` method that doesn't have type restrictions, but we can't use the `add` method that has restrictions.
+A única diferença é que a primeira mensagem de erro é um pouco mais clara, mas ambas as definições são seguras no sentido de que você terá um erro de um jeito ou de outro. Então, de modo geral, é preferível não especificar as restrições de tipo e praticamente só usá-las para definir sobrecarga de métodos. Isso resulta em código mais genérico e reutilizável. Por exemplo, se nós definirmos uma classe que tem um método `+`, mas não é um `Number`, podemos utilizar o método `adicionar` que não tem restrições de tipo, mas não aquele que tem restrições.
 
 ```crystal
-# A class that has a + method but isn't a Number
-class Six
+# Uma classe que tem um método + mas não é um Number
+class Seis
   def +(other)
     6 + other
   end
 end
 
-# add method without type restrictions
-def add(x, y)
+# O método adicionar sem restrições de tipo
+def adicionar(x, y)
   x + y
 end
 
 # OK
-add Six.new, 10
+adicionar Seis.new, 10
 
-# add method with type restrictions
-def restricted_add(x : Number, y : Number)
+# O método adicionar com restrições de tipo
+def adicionar_restrito(x : Number, y : Number)
   x + y
 end
 
-# Error: no overload matches 'restricted_add' with types Six, Int32
-restricted_add Six.new, 10
+# Error: no overload matches 'adicionar_restrito' with types Seis, Int32
+adicionar_restrito Seis.new, 10
 ```
 
-Refer to the [type grammar](type_grammar.html) for the notation used in type restrictions.
+Consulte a [gramática de tipos](type_grammar.md) para ver a notação usada nas restrições de tipo.
 
-## self restriction
+## Restrição a `self`
 
-A special type restriction is `self`:
+Um tipo de restrição especial é o `self`:
 
 ```crystal
-class Person
-  def ==(other : self)
-    other.name == name
+class Pessoa
+  def ==(outra : self)
+    outra.nome == nome
   end
 
-  def ==(other)
+  def ==(outra)
     false
   end
 end
 
-john = Person.new "John"
-another_john = Person.new "John"
-peter = Person.new "Peter"
+joao = Pessoa.new "João"
+outro_joao = Pessoa.new "João"
+pedro = Pessoa.new "Pedro"
 
-john == another_john #=> true
-john == peter #=> false (names differ)
-john == 1 #=> false (because 1 is not a Person)
+joao == outro_joao #=> true
+joao == pedro #=> false (nomes diferem)
+joao == 1 #=> false (porque 1 não é uma Pessoa)
 ```
 
-In the previous example `self` is the same as writing `Person`. But, in general, `self` is the same as writing the type that will finally own that method, which, when modules are involved, becomes more useful.
+No exemplo acima `self` é o mesmo que escrever `Pessoa`. Mas, em geral, `self` é o mesmo que escrever o tipo que finalmente terá o método, o que, quando envolve módulos, torna-se mais útil.
 
-As a side note, since `Person` inherits `Reference` the second definition of `==` is not needed, since it's already defined in `Reference`.
+Além disso, uma vez que `Pessoa` herda de `Reference`, a segunda definição de `==` não é necessária, pois ela já é definida em `Reference`.
 
-Note that `self` always represents a match against an instance type, even in class methods:
+Perceba que `self` sempre representa o valor correspondente a um tipo de instância, mesmo em método de classe:
 
 ```crystal
-class Person
-  def self.compare(p1 : self, p2 : self)
-    p1.name == p2.name
+class Pessoa
+  def self.comparar(p1 : self, p2 : self)
+    p1.nome == p2.nome
   end
 end
 
-john = Person.new "John"
-peter = Person.new "Peter"
+joao = Pessoa.new "João"
+pedro = Pessoa.new "Pedro"
 
-Person.compare(john, peter) # OK
+Pessoa.comparar(joao, pedro) # OK
 ```
 
-You can use `self.class` to restrict to the Person type. The next section talks about the `.class` suffix in type restrictions.
+Você pode usar `self.class` para restringir ao tipo `Pessoa`. A próxima seção fala sobre o sufixo `.class` nas restrições de tipo.
 
-## Classes as restrictions
+## Classes e restrições
 
-Using, for example, `Int32` as a type restriction makes the method only accept instances of `Int32`:
+Usar, por exemplo, `Int32` como uma restrição de tipo faz com que o método só aceite instâncias de `Int32`:
 
 ```crystal
 def foo(x : Int32)
 end
 
-foo 1       # OK
-foo "hello" # Error
+foo 1     # OK
+foo "olá" # Erro
 ```
 
-If you want a method to only accept the type Int32 (not instances of it), you use `.class`:
+Se você quer que um método só aceite o tipo `Int32` (e não intâncias dele), você pode usar `.class`:
 
 ```crystal
 def foo(x : Int32.class)
 end
 
 foo Int32  # OK
-foo String # Error
+foo String # Erro
 ```
 
-The above is useful for providing overloads based on types, not instances:
+Isso é útil para disponibilizar sobrecargas baseadas em tipos, não instâncias:
 
 ```crystal
 def foo(x : Int32.class)
-  puts "Got Int32"
+  puts "Recebi Int32"
 end
 
 def foo(x : String.class)
-  puts "Got String"
+  puts "Recebi String"
 end
 
-foo Int32  # prints "Got Int32"
-foo String # prints "Got String"
+foo Int32  # imprime "Recebi Int32"
+foo String # imprime "Recebi String"
 ```
 
-## Type restrictions in splats
+## Restrições de tipo em splats
 
-You can specify type restrictions in splats:
+Você pode especificar restrições de tipos em splats:
 
 ```crystal
 def foo(*args : Int32)
@@ -162,36 +162,36 @@ end
 def foo(*args : String)
 end
 
-foo 1, 2, 3       # OK, invokes first overload
-foo "a", "b", "c" # OK, invokes second overload
-foo 1, 2, "hello" # Error
-foo()             # Error
+foo 1, 2, 3       # OK, invoca a primeira sobrecarga
+foo "a", "b", "c" # OK, invoca a segunda sobrecarga
+foo 1, 2, "hello" # Erro
+foo()             # Erro
 ```
 
-When specifying a type, all elements in a tuple must match that type. Additionally, the empty-tuple doesn't match any of the above cases. If you want to support the empty-tuple case, add another overload:
+Ao especificar um tipo, todos os elementos em uma tupla precisam ser daquele tipo. Além disso, uma tupla vazia não corresponde a nenhum dos casos acima. Se você quiser suportar uma tupla vazia, adicione outra sobrecarga:
 
 ```crystal
 def foo
-  # This is the empty-tuple case
+  # Este é o caso da tupla vazia
 end
 ```
 
-## Free variables
+## Variáveis livres
 
-If you use a single uppercase letter as a type restriction, the identifier becomes a free variable:
+Se você usar uma única letra maiúscula como uma restrição de tipo, o identificador se torna uma variável livre:
 
 ```crystal
 def foo(x : T)
   T
 end
 
-foo(1)       #=> Int32
-foo("hello") #=> String
+foo(1)     #=> Int32
+foo("olá") #=> String
 ```
 
-That is, `T` becomes the type that was effectively used to instantiate the method.
+Ou seja, `T` se torna o tipo que de fato foi usado para instanciar o método.
 
-A free variable can be used to extract the type parameter of a generic type within a type restriction:
+Uma variável livre pode ser usada para extrair o parâmetro de tipo de um tipo genérico em uma restrição de tipos:
 
 ```crystal
 def foo(x : Array(T))
@@ -202,7 +202,7 @@ foo([1, 2])   #=> Int32
 foo([1, "a"]) #=> (Int32 | String)
 ```
 
-To create a method that accepts a type name, rather than an instance of a type, append `.class` to a free variable in the type restriction:
+Para criar um método que aceita um nome de tipo, ao invés de uma instância de um tipo, adicione `.class` à variável livre na restrição de tipo:
 
 ```crystal
 def foo(x : T.class)
@@ -213,7 +213,6 @@ foo(Int32)  #=> Array(Int32)
 foo(String) #=> Array(String)
 ```
 
-## Free variables in constructors
+## Variáveis livres em construtores
 
-Free variables allow type inference to be used when creating generic types. Refer to the [Generics](generics.html) section.
-
+Variáveis livres permitem que a indução de tipo seja usada ao criar tipos genéricos. Consulte a seção [Programação genérica](generics.md).

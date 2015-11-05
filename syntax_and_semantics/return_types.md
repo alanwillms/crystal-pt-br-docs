@@ -1,16 +1,16 @@
-# Return types
+# Tipos de retorno
 
-A method's return type is always inferred by the compiler. However, you might want to specify it for two reasons:
+O tipo do retorno de um método é sempre deduzido pelo compilador. No entanto, você pode querer especificá-lo por dois motivos:
 
-1. To make sure that the method returns the type that you want
-2. To make it appear in documentation comments
+1. Para assegurar que o método retorna o tipo que você quer
+2. Para fazer com que o tipo apareça nos comentários da documentação
 
-For example:
+Por exemplo:
 
 ```crystal
-def some_method : String
-  "hello"
+def algum_metodo : String
+  "olá"
 end
 ```
 
-The return type follows the [type grammar](type_grammar.html).
+O tipo de retorno segue a [gramática de tipos](type_grammar.md).

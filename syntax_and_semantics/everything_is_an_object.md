@@ -1,10 +1,10 @@
-# Everything is an object
+# Tudo é um objeto
 
-In Crystal everything is an object. The definition of an object boils down to these points:
+Tudo é um objeto em Crystal. A definição de um objeto se resume a estes pontos:
 
-* It has a type
-* It can respond to some methods
+* Ele tem um tipo
+* Ele pode responder a alguns métodos
 
-This is everything you can know about an object: its type and whether it responds to some method.
+Isso é tudo o que você pode saber sobre um objeto: seu tipo e se ele responde a algum método.
 
-An object's internal state, if any, can only be queried by invoking methods.
+O estado interno de um objeto, se houver algum, só pode ser consultado através da inovação de métodos.

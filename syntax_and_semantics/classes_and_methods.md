@@ -1,10 +1,10 @@
-# Classes and methods
+# Classes e métodos
 
-A class is a blueprint from which individual objects are created. As an example, consider a `Person` class. You declare a class like this:
+Uma classe é um modelo a partir do qual objetos individuais são criados. Por exemplo, considere a classe `Pessoa` abaixo. Você declara uma classe da seguinte forma:
 
 ```crystal
-class Person
+class Pessoa
 end
 ```
 
-Class names, and every type name, begin with a capital letter in Crystal.
+Os nomes de classes, e todo nome de tipo, começa com uma letra maiúscula em Crystal.

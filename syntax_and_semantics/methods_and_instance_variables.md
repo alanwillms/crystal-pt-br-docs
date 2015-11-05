@@ -1,94 +1,94 @@
-# Methods and instance variables
+# Métodos e variáveis de instância
 
-We can simplify our constructor by using a shorter syntax for assigning a method argument to an instance variable:
+Podemos simplificar nosso construtor usando uma sintaxe mais curta para atribuir o argumento de um método a uma variável de instância:
 
 ```crystal
-class Person
-  def initialize(@name)
-    @age = 0
+class Pessoa
+  def initialize(@nome)
+    @idade = 0
   end
 end
 ```
 
-Right now, we can't do much with a person: create it with a name, ask for its name and for its age, which will always be zero. So lets add a method that makes a person become older:
+No momento não podemos fazer muita coisa com uma pessoa: podemos criá-la com um nome, e pedir por seu nome e sua idade (que sempre será zero). Então vamos adicionar um método que envelhece uma pessoa:
 
 ```crystal
-class Person
-  def become_older
-    @age += 1
+class Pessoa
+  def envelhecer
+    @idade += 1
   end
 end
 
-john = Person.new "John"
-peter = Person.new "Peter"
+joao = Pessoa.new "João"
+pedro = Pessoa.new "Pedro"
 
-john.age #=> 0
+joao.idade #=> 0
 
-john.become_older
-john.age #=> 1
+joao.envelhecer
+joao.idade #=> 1
 
-peter.age #=> 0
+pedro.idade #=> 0
 ```
 
-Method names begin with a lowercase letter and, as a convention, only use lowercase letters, underscores and numbers.
+Os nomes de métodos começam com uma letra minúscula e, como convenção, só usam letras minúsculas, _underscores_ e números.
 
-As a side note, we can define `become_older` inside the original `Person` definition, or in a separate definition: Crystal combines all definitions into a single class. The following works just fine:
+Além disso, podemos declarar `envelhecer` dentro da definição original da `Pessoa`, ou em uma definição separada: Crystal combina todas as definições em uma única classe. O código abaixo funciona normalmente:
 
 ```crystal
-class Person
-  def initialize(@name)
-    @age = 0
+class Pessoa
+  def initialize(@nome)
+    @idade = 0
   end
 end
 
-class Person
-  def become_older
-    @age += 1
+class Pessoa
+  def envelhecer
+    @idade += 1
   end
 end
 ```
 
-## Redefining methods, and previous_def
+## Sobrescrevendo métodos e `previous_def`
 
-If you redefine a method, the last definition will take precedence.
+Se você sobrescreve um método, a última definição toma precedência.
 
 ```crystal
-class Person
-  def become_older
-    @age += 1
+class Pessoa
+  def envelhecer
+    @idade += 1
   end
 end
 
-class Person
-  def become_older
-    @age += 2
+class Pessoa
+  def envelhecer
+    @idade += 2
   end
 end
 
-person = Person.new "John"
-person.become_older
-person.age #=> 2
+person = Pessoa.new "João"
+person.envelhecer
+person.idade #=> 2
 ```
 
-You can invoke the previously redefined method with `previous_def`:
+Você pode invocar o método sobrescrito com `previous_def`:
 
 ```crystal
-class Person
-  def become_older
-    @age += 1
+class Pessoa
+  def envelhecer
+    @idade += 1
   end
 end
 
-class Person
-  def become_older
+class Pessoa
+  def envelhecer
     previous_def
-    @age += 2
+    @idade += 2
   end
 end
 
-person = Person.new "John"
-person.become_older
-person.age #=> 3
+person = Pessoa.new "João"
+person.envelhecer
+person.idade #=> 3
 ```
 
-Without arguments nor parenthesis, `previous_def` receives the same arguments as the method's arguments. Otherwise, it receives the arguments you pass to it.
+Sem argumentos ou parênteses, `previous_def` recebe os mesmos argumentos que o método onde é invocado. Caso contrário, ele recebe os argumentos que você passa para ele.

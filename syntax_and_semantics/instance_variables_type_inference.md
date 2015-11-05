@@ -1,194 +1,194 @@
-# Instance variables type inference
+# Variáveis de instância e inferência de tipo
 
-Did you notice that in all of the previous examples we never said the types of a `Person`'s `@name` and `@age`? This is because the compiler inferred them for us.
+Você percebeu que em todos os exemplos anteriores nós nunca dissemos os tipos do `@nome` e da `@idade` da `Pessoa`? Isso porque o compilador deduziu os tipos para nós.
 
-When we wrote:
+Quando escrevemos:
 
 ```crystal
-class Person
-  getter name
+class Pessoa
+  getter nome
 
-  def initialize(@name)
-    @age = 0
+  def initialize(@nome)
+    @idade = 0
   end
 end
 
-john = Person.new "John"
-john.name #=> "John"
-john.name.size #=> 4
+joao = Pessoa.new "João"
+joao.nome #=> "João"
+joao.nome.size #=> 4
 ```
 
-Since we invoked `Person.new` with a `String` argument, the compiler makes `@name` be a `String` too.
+Já que invocamos `Pessoa.new` com um argumento do tipo `String`, o compilador também torna `@nome` em uma `String`.
 
-If we had invoked `Person.new` with another type, `@name` would have taken a different type:
+Se tivéssemos invocado `Pessoa.new` com outro tipo, `@nome` teria recebido esse tipo diferente:
 
 ```crystal
-one = Person.new 1
-one.name #=> 1
-one.name + 2 #=> 3
+um = Pessoa.new 1
+um.nome #=> 1
+um.nome + 2 #=> 3
 ```
 
-If you compile the previous programs with the `tool hierarchy` command, the compiler will show you a hierarchy graph with the types it inferred. In the first case:
+Se você compilar os programas acima com o comando `tool hierarchy`, o compilador mostraria um grafo da hierarquia com os tipos que ele deduziu. No primeiro caso:
 
 ```
 - class Object
   |
   +- class Reference
      |
-     +- class Person
-            @name : String
-            @age  : Int32
+     +- class Pessoa
+            @nome : String
+            @idade  : Int32
 ```
 
-In the second case:
-
-```
-- class Object
-  |
-  +- class Reference
-     |
-     +- class Person
-            @name : Int32
-            @age  : Int32
-```
-
-What happens if we create two different people, one with a `String` and one with an `Int32`? Let's try it:
-
-```crystal
-john = Person.new "John"
-one = Person.new 1
-```
-
-Invoking the compiler with the `tool hierarchy` command we get:
+No segundo caso:
 
 ```
 - class Object
   |
   +- class Reference
      |
-     +- class Person
-            @name : (String | Int32)
-            @age  : Int32
+     +- class Pessoa
+            @nome : Int32
+            @idade  : Int32
 ```
 
-We can see that now `@name` has a type `(String | Int32)`, which is read as a *union* of `String` and `Int32`. The compiler made `@name` have all types assigned to it.
-
-In this case, the compiler will consider any usage of `@name` as always being either a `String` or an `Int32` and will give a compile time error if a method is not found for *both* types:
+O que acontece se criarmos duas pessoas diferentes, uma com uma `String` e outra com um `Int32`? Vamos tentar fazer isso:
 
 ```crystal
-john = Person.new "John"
-one = Person.new 1
+joao = Pessoa.new "João"
+um = Pessoa.new 1
+```
+
+Ao invocar o compilador com o comando `tool hierarchy`, nós obtemos:
+
+```
+- class Object
+  |
+  +- class Reference
+     |
+     +- class Pessoa
+            @nome : (String | Int32)
+            @idade  : Int32
+```
+
+Podemos ver que agora `@nome` tem um tipo `(String | Int32)`, que é lido como uma **união** de `String` e `Int32`. O compilador fez com que `@nome` tivesse todos os tipos atribuídos a ele.
+
+Neste caso, o compilador considerará qualquer uso de `@nome` como sempre sendo ou uma `String` ou um `Int32`, e retornará um erro em tempo de compilação se um método não for encontrado em *ambos* os tipos:
+
+```crystal
+joao = Pessoa.new "João"
+um = Pessoa.new 1
 
 # Error: undefined method 'size' for Int32
-john.name.size
+joao.nome.size
 
 # Error: no overload matches 'String#+' with types Int32
-john.name + 3
+joao.nome + 3
 ```
 
-The compiler will even give an error if you first use a variable assuming it has a type and later you change that type:
+O compilador também exibirá um erro se você usar uma variável primeiro assumindo um tipo e depois mudando esse tipo:
 
 ```crystal
-john = Person.new "John"
-john.name.size
-one = Person.new 1
+joao = Pessoa.new "João"
+joao.nome.size
+um = Pessoa.new 1
 ```
 
-Gives this compile-time error:
+Dá o erro em tempo de compilação:
 
 ```
-Error in foo.cr:14: instantiating 'Person:Class#new(Int32)'
+Error in foo.cr:14: instantiating 'Pessoa:Class#new(Int32)'
 
-one = Person.new 1
+um = Pessoa.new 1
              ^~~
 
-instantiating 'Person#initialize(Int32)'
+instantiating 'Pessoa#initialize(Int32)'
 
 in foo.cr:12: undefined method 'size' for Int32
 
-john.name.size
+joao.nome.size
           ^~~~~~
 ```
 
-That is, the compiler does global type inference and tells you whenever you make a mistake in the usage of a class or method. You can go ahead and put a type restriction like `def initialize(@name : String)`, but that makes the code a bit more verbose and also less generic: everything will work just fine if you create `Person` instance with types that have the same *interface* as a `String`, as long as you use a `Person`'s name like if it were a `String`.
+Ou seja, o compilador faz uma inferência global de tipos e te avisa quando quer que você cometa o erro no uso de uma classe ou método. Você pode optar por colocar uma restrição de tipo como `def initialize(@nome : String)`, mas isso torna o código um pouquinho mais verboso e também menos genérico: tudo funcionará normalmente se você criar uma instância de `Pessoa` com tipos que têm a mesma *interface* que uma `String`, desde que você use o nome da `Pessoa` como se fosse uma `String`.
 
-If you do want to have different `Person` types, one with `@name` being an `Int32` and one with `@name` being a `String`, you must use [generics](generics.html).
+Se você quiser ter tipos diferentes de `Pessoa`, um onde o `@nome` é um `Int32` e um onde o `@nome` é uma `String`, você precisa utilizar [programação genérica](generics.html).
 
-## Nilable instance variables
+## Variáveis de instância que podem ser Nil
 
-If an instance variable is not assigned in all of the `initialize` defined in a class, it will be considered as also having the type `Nil`:
+Se uma variável de instância não for atribuída em todos os `initialize` definidos em uma classe, considera-se que ela também tem o tipo `Nil`:
 
 ```crystal
-class Person
-  getter name
+class Pessoa
+  getter nome
 
-  def initialize(@name)
-    @age = 0
+  def initialize(@nome)
+    @idade = 0
   end
 
-  def address
-    @address
+  def endereco
+    @endereco
   end
 
-  def address=(@address)
+  def endereco=(@endereco)
   end
 end
 
-john = Person.new "John"
-john.address = "Argentina"
+joao = Pessoa.new "João"
+joao.endereco = "Argentina"
 ```
 
-The hierarchy graph now shows:
+Agora o grafo da hierarquia nos mostra:
 
 ```
 - class Object
   |
   +- class Reference
      |
-     +- class Person
-            @name : String
-            @age : Int32
-            @address : String?
+     +- class Pessoa
+            @nome : String
+            @idade : Int32
+            @endereco : String?
 ```
 
-You can see `@address` is `String?`, which is a short form notation of `String | Nil`. This means that the following gives a compile time error:
+Você pode ver que `@endereco` é do tipo `String?`, que é uma notação curta para `String | Nil`. Isso significa que o código a seguir lança um erro em tempo de compilação:
 
 ```crystal
 # Error: undefined method 'size' for Nil
-john.address.size
+joao.endereco.size
 ```
 
-To deal with `Nil`, and generally with union types, you have several options: use an [if var](if_var.html), [if var.is_a?](if_varis_a.html), [case](case.html) and [is_a?](is_a.html).
+Para lidar `Nil`, e geralmente com tipos união, vocêm tem diversas opções: usar [if var](if_var.html), [if var.is_a?](if_varis_a.html), [case](case.html) e [is_a?](is_a.html).
 
-## Catch-all initialization
+## Inicialização geral
 
-Instance variables can also be initialized outside `initialize` methods:
+Variáveis de instância também podem ser inicializadas fora de métodos `initialize`:
 
 ```crystal
-class Person
-  @age = 0
+class Pessoa
+  @idade = 0
 
-  def initialize(@name)
+  def initialize(@nome)
   end
 end
 ```
 
-This will initialize `@age` to zero in every constructor. This is useful to avoid duplication, but also to avoid the `Nil` type when reopening a class and adding instance variables to it.
+Isso inicializará `@idade` com zero em todos os construtores. Isso é útil para evitar duplicação e para evitar o tipo `Nil` ao reabrir uma classe e adicionar variáveis de instância a ela.
 
-## Specifying the types of instance variables
+## Especificando os tipos de variáveis de instância
 
-In certain cases you want to tell the compiler to fix the type of an instance variable. You can do this with `::`:
+Em determinados casos você pode querer dizer ao compilador para fixar o tipo de uma variável de instância. Você pode fazer isso com `::`:
 
 ```crystal
-class Person
-  @age :: Int32
+class Pessoa
+  @idade :: Int32
 
-  def initialize(@name)
-    @age = 0
+  def initialize(@nome)
+    @idade = 0
   end
 end
 ```
 
-In this case, if we assign something that's not an `Int32` to `@age`, a compile-time error will be issued at the assignment location.
+Neste caso, se atribuirmos alguma coisa que não é um `Int32` a `@idade`, um erro de tempo de compilação será lançado no ponto da atribuição.
 
-Note that you still have to initialize the instance variables, either with a catch-all initializer or within an `initialize` method: there are no "default" values for types.
+Perceba que você ainda precisa inicializar as variáveis de instância, seja com um inicializador geral ou dentro de um método `initialize`: não existem valores "padrão" para os tipos.

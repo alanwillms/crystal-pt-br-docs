@@ -1,122 +1,123 @@
-# Operators
+# Operadores
 
-Operators like `+` and `-` are regular method calls. For example:
+Operadores como `+` e `-` são chamadas regulares de métodos. Por exemplo:
 
 ```crystal
 a + b
 ```
 
-is the same as:
+é o mesmo que:
 
 ```crystal
 a.+(b)
 ```
 
-You can define an operator for a type like this:
+Você pode definir um operador para um tipo da seguinte maneira:
 
 ```crystal
-struct Vector2
+struct Vetor2
   getter x, y
 
   def initialize(@x, @y)
   end
 
-  def +(other)
-    Vector2.new(x + other.x, y + other.y)
+  def +(outro)
+    Vetor2.new(x + outro.x, y + outro.y)
   end
 end
 
-v1 = Vector2.new(1, 2)
-v2 = Vector2.new(3, 4)
-v1 + v2               #=> Vector2(@x=4, @y=6)
+v1 = Vetor2.new(1, 2)
+v2 = Vetor2.new(3, 4)
+v1 + v2               #=> Vetor2(@x=4, @y=6)
 ```
 
-Next follows the full list of operators with their usual meaning.
+Veja a seguir uma lista completa de operadores com seu significado usual.
 
-## Unary operators
+## Operadores unários
 
 ```crystal
-+   # positive
--   # negative
-!   # not
-~   # bitwise complement
++   # positivo
+-   # negativo
+!   # não
+~   # complemento bit a bit
 ```
 
-These are defined without arguments. For example
+Estes são definidos sem argumentos. Por exemplo
 
 ```crystal
-struct Vector2
+struct Vetor2
   def -
-    Vector2.new(-x, -y)
+    Vetor2.new(-x, -y)
   end
 end
 
-v1 = Vector2.new(1, 2)
--v1                    #=> Vector2(@x=-1, @y=-2)
+v1 = Vetor2.new(1, 2)
+-v1                   #=> Vetor2(@x=-1, @y=-2)
 ```
 
-## Binary operators
+## Operadores binários
 
 ```crystal
-+   # addition
--   # subtraction
-*   # multiplication
-/   # division
-%   # modulo
-!   # negation
-&   # bitwise and
-|   # bitwise or
-^   # bitwise xor
-**  # exponentiation
-<<  # shift left, append
->>  # shift right
-==  # equals
-!=  # not equals
-<   # less
-<=  # less or equal
->   # greater
->=  # greater or equal
-<=> # comparison
-=== # case equality
++   # adição
+-   # subtração
+*   # multiplicação
+/   # divisão
+%   # módulo
+!   # negação
+&   # and bit a bit
+|   # or bit a bit
+^   # xor bit a bit
+**  # exponenciação
+<<  # deslocar para a esquerda, anexar
+>>  # deslocar para a direita
+==  # igual
+!=  # desigual
+<   # menor
+<=  # menor ou igual
+>   # maior
+>=  # maior ou igual
+<=> # comparação
+=== # igualdade de case
 ```
 
-## Indexing
+## Indexação
 
 ```crystal
-[]  # array index (raises on out of bounds)
-[]? # array index (nil on out of bounds)
-[]= # array index assignment
+[]  # índice do array (lança exceção se estiver fora do limite)
+[]? # índice do array (nil se estiver fora do limite)
+[]= # atribuição ao índice do array
 ```
 
-For example:
+Por exemplo:
 
 ```crystal
-class MyArray
-  def [](index)
+class MeuArray
+  def [](indice)
     # ...
   end
 
-  def [](index1, index2, index3)
+  def [](indice1, indice2, indice3)
     # ...
   end
 
-  def []=(index, value)
+  def []=(indice, valor)
     # ...
   end
 end
 
-array = MyArray.new
+array = MeuArray.new
 
-array[1]       # invokes the first method
-array[1, 2, 3] # invokes the second method
-array[1] = 2   # invokes the third method
+array[1]       # invoca o primeiro método
+array[1, 2, 3] # invoca o segundo método
+array[1] = 2   # invoca o terceiro método
 
-array.[](1)       # invokes the first method
-array.[](1, 2, 3) # invokes the second method
-array.[]=(1, 2)   # invokes the third method
+array.[](1)       # invoca o primeiro método
+array.[](1, 2, 3) # invoca o segundo método
+array.[]=(1, 2)   # invoca o terceiro método
 ```
 
-## Meaning
+## Significado
 
-One can assign any meaning to the operators, but the convention is to follow the above ones to avoid cryptic code, or code that behaves in an unexpected way.
-
+Pode-se atribuir qualquer significado aos operadores, mas a convenção é seguir
+os significados acima para evitar código críptico ou código que se comporta de
+maneira inesperada.

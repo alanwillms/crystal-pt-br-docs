@@ -1,59 +1,59 @@
-# new, initialize and allocate
+# new, initialize e allocate
 
-You create an instance of a class by invoking `new` on that class:
+Você pode criar uma instância de uma classe invocando `new` nela:
 
 ```
-person = Person.new
+pessoa = Pessoa.new
 ```
 
-Here, `person` is an instance of `Person`.
+Aqui `pessoa` é uma instância de `Pessoa`.
 
-We can't do much with `person`, so lets add some concepts to it. A `Person` has a name and an age. In the "Everything is an object" section we said that an object has a type and responds to some methods, which is the only way to interact with objects, so we'll need a `name` and `age` methods. We will store this information in instance variables, which are always prefixed with an *at* (`@`) character. We also want a Person to come to existence with a name of our choice and an age of zero. We code the "come to existence" part with a special `initialize` method, which is normally called a *constructor*:
+Nós não podemos fazer muita coisa com `pessoa`, então vamos adicionar alguns conceitos a ela. Uma `Pessoa` tem um nome e uma idade. Na seção "Tudo é um objeto", nós dissemos que um objeto tem um tipo e responde a alguns métodos, que são a única maneira de interagir com objetos, então vamos precisar dos métodos `nome` e `idade`. Vamos armazenar essas informações em variáveis de instância, que são prefixadas com um caractere de *arroba* (`@`). Nós também queremos que uma Pessoa venha a existir com um nome de nossa escolha e uma idade de zero. Nós programamos a parte de "vir a existir" com um método especial chamado `initialize`, que normalmente é conhecido como *construtor*:
 
 ```crystal
-class Person
-  def initialize(name)
-    @name = name
-    @age = 0
+class Pessoa
+  def initialize(nome)
+    @nome = nome
+    @idade = 0
   end
 
-  def name
-    @name
+  def nome
+    @nome
   end
 
-  def age
-    @age
+  def idade
+    @idade
   end
 end
 ```
 
-Now we can create people like this:
+Agora podemos criar pessoas da seguinte forma:
 
 ```crystal
-john = Person.new "John"
-peter = Person.new "Peter"
+joao = Pessoa.new "João"
+pedro = Pessoa.new "Pedro"
 
-john.name #=> "John"
-john.age #=> 0
+joao.nome #=> "João"
+joao.idade #=> 0
 
-peter.name #=> "Peter"
+pedro.nome #=> "Pedro"
 ```
 
-Note that we create a `Person` with `new` but we defined the initialization in an `initialize` method, not in a `new` method. Why is this so?
+Perceba que criamos uma `Pessoa` com `new`, mas nós definimos a inicialização em um método chamado `initialize`, não em um método `new`. Por que isso?
 
-The answer is that when we defined an `initialize` method Crystal defined a `new` method for us, like this:
+A reposta é que quando definimos um método `initialize`, o Crystal definiu um método `new` para nós, da seguinte forma:
 
 ```crystal
-class Person
-  def self.new(name)
-    instance = Person.allocate
-    instance.initialize(name)
-    instance
+class Pessoa
+  def self.new(nome)
+    instancia = Pessoa.allocate
+    instancia.initialize(nome)
+    instancia
   end
  end
 ```
 
-First, note the `self.new` notation. This means that the method belongs to the **class** `Person`, not to particular instances of that class. This is why we can do `Person.new`.
+Primeiramente, perceba a notação `self.new`. Isso significa que o método pertence à **classe** `Pessoa`, e não qualquer instância em particular dessa classe. É por isso que conseguimos chamar `Pessoa.new`.
 
-Second, `allocate` is a low-level class method that creates an uninitialized object of the given type. It basically allocates the necessary memory for it. Then `initialize` is invoked on it and then you get the instance. You generally never invoke `allocate`, as it is [unsafe](unsafe.html), but that's the reason why `new` and `initialize` are related.
+Em segundo lugar, `allocate` é um método de classe de baixo nível que cria um objeto não-inicializado com o tipo informado. Ele basicamente aloca a memória necessária para isso. Então o método `initialize` é invocado nele e então você obtém uma instância. Geralmente você nunca invoca o método `allocate`, já que ele é [inseguro](unsafe.md), mas esse é o motivo pelo qual `new` e `initialize` estão relacionados.
 

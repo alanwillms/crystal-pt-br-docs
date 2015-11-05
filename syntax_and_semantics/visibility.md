@@ -1,97 +1,102 @@
-# Visibility
+# Visibilidade
 
-Methods are public by default: the compiler will always let you invoke them. Because public is the default if there is no `public` keyword.
+Os métodos são públicos por padrão: o compilador sempre permitirá que você os
+invoque. Já que o padrão é público, não existe uma palavra-chave `public`.
 
-Methods can be marked as `private` or `protected`.
+Os métodos podem ser marcados como `private` ou `protected`.
 
-A `private` method can only be invoked without a receiver, that is, without something before the dot:
+Um método `private` (privado) só pode ser invocado sem um receptor, ou seja,
+sem algo antes do ponto:
 
 ```crystal
-class Person
-  private def say(message)
-    puts message
+class Pessoa
+  private def dizer(mensagem)
+    puts mensagem
   end
 
-  def say_hello
-    say "hello" # OK, no receiver
-    self.say "hello" # Error, self is a receiver
+  def dizer_ola
+    dizer "olá"      # OK, não tem receptor
+    self.dizer "olá" # Erro, self é um receptor
 
-    other = Person.new "Other"
-    other.say "hello" # Error, other is a receiver
+    outro = Pessoa.new "Outro"
+    outro.dizer "olá" # Erro, outro é um receptor
   end
 end
 ```
 
-Note that `private` methods are visible by subclasses:
+Perceba que os métodos `private` estão visíveis para suas subclasses:
 
 ```crystal
-class Employee < Person
-  def say_bye
-    say "bye" # OK
+class Empregado < Pessoa
+  def dizer_tchau
+    dizer "tchau" # OK
   end
 end
 ```
 
-A `protected` method can only be invoked on instances of the same type as the current type:
+Um método `protected` (protegido) só pode ser invocado em instâncias do mesmo
+tipo que o atual:
 
 ```crystal
-class Person
-  protected def say(message)
-    puts message
+class Pessoa
+  protected def dizer(mensagem)
+    puts mensagem
   end
 
-  def say_hello
-    say "hello" # OK, implicit self is a Person
-    self.say "hello" # OK, self is a Person
+  def dizer_ola
+    dizer "olá"      # OK, o self implícito é uma Pessoa
+    self.dizer "olá" # OK, self é uma Pessoa
 
-    other = Person.new "Other"
-    other.say "hello" # OK, other is a Person
+    outro = Pessoa.new "Outro"
+    outro.dizer "olá" # OK, outro é uma Pessoa
   end
 end
 
 class Animal
-  def make_a_person_talk
-    person = Person.new
-    person.say "hello" # Error, person is a Person
-                       # but current type is an Animal
+  def fazer_uma_pessoa_falar
+    pessoa = Pessoa.new
+    pessoa.dizer "olá" # Erro, pessoa é uma Pessoa,
+                       # mas o tipo atual é um Animal
   end
 end
 
-one_more = Person.new "One more"
-one_more.say "hello" # Error, one_more is a Person
-                     # but current type is the Program
+mais_uma = Pessoa.new "Mais uma"
+mais_uma.dizer "olá" # Erro, mais_uma é uma Pessoa
+                     # mas o tipo atual é Program
 ```
 
-A `protected` class method can be invoked from an instance method and the other way around:
+Um método de classe protegido (`protected`) pode ser invocado de um método de
+instância e vice versa:
 
 ```crystal
-class Person
-  protected def self.say(message)
-    puts message
+class Pessoa
+  protected def self.dizer(mensagem)
+    puts mensagem
   end
 
-  def say_hello
-    Person.say "hello" # OK
+  def dizer_ola
+    Pessoa.dizer "olá" # OK
   end
 end
 ```
 
-## Private top-level methods
+## Métodos privados top-level
 
-A `private` top-level method is only visible in the current file.
+Um método top-level privado (`private`) só é visível no arquivo atual.
 
 ```crystal
-# In file one.cr
-private def greet
-  puts "Hello"
+# No arquivo um.cr
+private def cumprimentar
+  puts "Olá"
 end
 
-greet #=> "Hello"
+cumprimentar #=> "Olá"
 
-# In file two.cr
-require "./one"
+# No arquivo dois.cr
+require "./um"
 
-greet # undefined local variable or method 'greet'
+cumprimentar # undefined local variable or method 'cumprimentar'
 ```
 
-This allows you to define helper methods in a file that will only be known in that file.
+Isso permite que você defina métodos auxiliares em um arquivo que só serão
+conhecidos por ele próprio.
